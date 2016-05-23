@@ -19,4 +19,4 @@ Route::auth();
 
 Route::get('/home', 'HomeController@index');
 
-Route::get('/demo', 'DemoController@index');
+Route::get('/heuristicas', 'HeuristicasController@listAll');
