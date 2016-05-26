@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Database\Seeder;
+use Carbon\Carbon;
 
 class DatabaseSeeder extends Seeder
 {
@@ -13,7 +14,8 @@ class DatabaseSeeder extends Seeder
     {
         // $this->call(UsersTableSeeder::class);
         DB::table('heuristicas')->insert([
-            'descricao' => 'Primeira Heuristica',            
+            'descricao' => 'Quarta Heurística',    
+            'created_at' => Carbon::now()        
         ]);
     }
 }

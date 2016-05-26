@@ -20,3 +20,5 @@ Route::auth();
 Route::get('/home', 'HomeController@index');
 
 Route::get('/heuristicas', 'HeuristicasController@listAll');
+
+Route::get('/heuristicas/{id}', 'HeuristicasController@show');
