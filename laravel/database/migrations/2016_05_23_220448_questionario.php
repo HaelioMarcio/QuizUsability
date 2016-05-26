@@ -12,14 +12,15 @@ class Questionario extends Migration
      */
     public function up()
     {
-        Schema::create('questionarios', function(Blueprint $table){
+        Schema::create('questionario', function(Blueprint $table){
             $table->increments('id');
-            $table->string('descricao', 45)->nullable();
+            $table->string('descricao', 255);
             $table->integer('projeto_id')->unsigned();
-            $table->string('objetivo', 45)->nullable();
-            $table->boolean('ativo')->default(false);
+            $table->string('token', 15)->unique();
+            $table->string('objetivo', 255);
             $table->timestamps();
-            $table->foreign('projeto_id')->references('id')->on('projetos');
+            $table->softDeletes();
+            $table->foreign('projeto_id')->references('id')->on('projeto');
         });
     }
 
@@ -30,6 +31,6 @@ class Questionario extends Migration
      */
     public function down()
     {
-        //
+        Schema::drop('questionario');
     }
 }

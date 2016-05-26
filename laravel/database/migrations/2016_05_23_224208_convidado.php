@@ -12,10 +12,10 @@ class Convidado extends Migration
      */
     public function up()
     {
-        Schema::create('convidados', function(Blueprint $table){
+        Schema::create('convidado', function(Blueprint $table){
             $table->increments('id');
-            $table->string('nome', 100)->nullable();
-            $table->string('email')->nullable();
+            $table->string('nome', 100);
+            $table->string('email')->unique();
             $table->timestamps();
         });
     }
@@ -27,6 +27,6 @@ class Convidado extends Migration
      */
     public function down()
     {
-        Schema::drop('convidados');
+        Schema::drop('convidado');
     }
 }

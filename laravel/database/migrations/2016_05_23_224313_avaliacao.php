@@ -12,14 +12,13 @@ class Avaliacao extends Migration
      */
     public function up()
     {
-        Schema::create('avaliacoes', function(Blueprint $table){
+        Schema::create('avaliacao', function(Blueprint $table){
             $table->increments('id');
-            $table->timestamp('data_criacao');
             $table->integer('questionario_id')->unsigned();
             $table->integer('convidado_id')->unsigned();
 
-            $table->foreign('questionario_id')->references('id')->on('questionarios');
-            $table->foreign('convidado_id')->references('id')->on('convidados');
+            $table->foreign('questionario_id')->references('id')->on('questionario');
+            $table->foreign('convidado_id')->references('id')->on('convidado');
             $table->timestamps();
         });
     }
@@ -31,6 +30,6 @@ class Avaliacao extends Migration
      */
     public function down()
     {
-        Schema::drop('avaliacoes');
+        Schema::drop('avaliacao');
     }
 }

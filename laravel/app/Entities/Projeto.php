@@ -9,6 +9,8 @@ use Prettus\Repository\Traits\TransformableTrait;
 class Projeto extends Model implements Transformable
 {
     use TransformableTrait;
+    
+    protected $table = 'projeto';
 
     protected $fillable = [];
 
