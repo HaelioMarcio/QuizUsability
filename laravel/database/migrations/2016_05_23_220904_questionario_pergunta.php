@@ -12,13 +12,12 @@ class QuestionarioPergunta extends Migration
      */
     public function up()
     {
-        Schema::create('questionarios_perguntas', function(Blueprint $table){
+        Schema::create('questionario_pergunta', function(Blueprint $table){
             $table->integer('questionario_id')->unsigned();
             $table->integer('pergunta_id')->unsigned();
-            $table->timestamps();
 
-            $table->foreign('questionario_id')->references('id')->on('questionarios');
-            $table->foreign('pergunta_id')->references('id')->on('perguntas');
+            $table->foreign('questionario_id')->references('id')->on('questionario');
+            $table->foreign('pergunta_id')->references('id')->on('pergunta');
             
         });
     }
@@ -30,6 +29,6 @@ class QuestionarioPergunta extends Migration
      */
     public function down()
     {
-        Schema::drop('questionarios_perguntas');
+        Schema::drop('questionario_pergunta');
     }
 }

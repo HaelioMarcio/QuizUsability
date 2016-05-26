@@ -13,9 +13,9 @@ class CreateHeuristicasTable extends Migration
 	 */
 	public function up()
 	{
-		Schema::create('heuristicas', function(Blueprint $table) {
+		Schema::create('heuristica', function(Blueprint $table) {
             $table->increments('id');
-            $table->string('descricao');
+            $table->string('descricao')->unique();
             $table->timestamps();
 		});
 	}
@@ -27,7 +27,7 @@ class CreateHeuristicasTable extends Migration
 	 */
 	public function down()
 	{
-		Schema::drop('heuristicas');
+		Schema::drop('heuristica');
 	}
 
 }

@@ -10,6 +10,8 @@ class Heuristica extends Model implements Transformable
 {
     use TransformableTrait;
 
+    protected $table = 'heuristica';
+
     protected $fillable = ['descricao', 'created_at'];
 
 }

@@ -12,11 +12,10 @@ class Resposta extends Migration
      */
     public function up()
     {
-        Schema::create('respostas', function(Blueprint $table){
+        Schema::create('resposta', function(Blueprint $table){
             $table->increments('id');
-            $table->string('descricao', 45)->nullable();
+            $table->string('descricao', 45)->unique();
             $table->integer('peso');
-            $table->timestamps();
         });
     }
 
@@ -27,6 +26,6 @@ class Resposta extends Migration
      */
     public function down()
     {
-        Schema::drop('respostas');
+        Schema::drop('resposta');
     }
 }

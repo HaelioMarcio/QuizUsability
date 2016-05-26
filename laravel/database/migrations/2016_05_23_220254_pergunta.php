@@ -12,16 +12,12 @@ class Pergunta extends Migration
      */
     public function up()
     {
-        Schema::create('perguntas', function(Blueprint $table){
+        Schema::create('pergunta', function(Blueprint $table){
             $table->increments('id');
-            $table->string('descricao', 45)->nullable();
+            $table->string('descricao', 255)->nullable()->unique();
             $table->integer('heuristica_id')->unsigned();
-            $table->integer('empresa_id')->unsigned();
             $table->timestamps();
-
-            $table->foreign('heuristica_id')->references('id')->on('heuristicas');
-            $table->foreign('empresa_id')->references('id')->on('empresas');
-            
+            $table->foreign('heuristica_id')->references('id')->on('heuristica');
         });
     }
 
@@ -32,6 +28,6 @@ class Pergunta extends Migration
      */
     public function down()
     {
-        //
+        Schema::drop('pergunta');
     }
 }

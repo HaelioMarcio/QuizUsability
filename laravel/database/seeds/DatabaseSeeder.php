@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Database\Seeder;
+use Carbon\Carbon;
 
 class DatabaseSeeder extends Seeder
 {
@@ -12,8 +13,8 @@ class DatabaseSeeder extends Seeder
     public function run()
     {
         // $this->call(UsersTableSeeder::class);
-        DB::table('heuristicas')->insert([
-            'descricao' => 'Primeira Heuristica',            
-        ]);
+        $this->call(HeuristicaTableSeeder::class);
+        $this->call(RespostaTableSeeder::class);
+        $this->call(PerguntaTableSeeder::class);
     }
 }
