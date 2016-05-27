@@ -27,7 +27,7 @@ class HeuristicaRepositoryEloquent extends BaseRepository implements HeuristicaR
     /**
     * Specify Validator class name
     *
-    * @return mixed
+    * @return validator
     */
     public function validator()
     {
