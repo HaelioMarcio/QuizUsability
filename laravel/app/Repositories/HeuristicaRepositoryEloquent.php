@@ -37,7 +37,7 @@ class HeuristicaRepositoryEloquent extends BaseRepository implements HeuristicaR
 
 
     /**
-     * Boot up the repository, pushing criteria
+     * Boot up the repository, pushing criteria.
      */
     public function boot()
     {
