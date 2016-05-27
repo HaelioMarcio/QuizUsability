@@ -7,27 +7,27 @@ use Illuminate\Http\Request;
 use App\Http\Requests;
 use Prettus\Validator\Contracts\ValidatorInterface;
 use Prettus\Validator\Exceptions\ValidatorException;
-use App\Http\Requests\ProjetoCreateRequest;
-use App\Http\Requests\ProjetoUpdateRequest;
-use App\Repositories\ProjetoRepository;
-use App\Validators\ProjetoValidator;
+use App\Http\Requests\QuestionarioCreateRequest;
+use App\Http\Requests\QuestionarioUpdateRequest;
+use App\Repositories\QuestionarioRepository;
+use App\Validators\QuestionarioValidator;
 
 
-class ProjetosController extends Controller
+class QuestionariosController extends Controller
 {
 
     /**
-     * @var ProjetoRepository
+     * @var QuestionarioRepository
      */
     protected $repository;
 
     /**
-     * @var ProjetoValidator
+     * @var QuestionarioValidator
      */
     protected $validator;
 
 
-    public function __construct(ProjetoRepository $repository, ProjetoValidator $validator)
+    public function __construct(QuestionarioRepository $repository, QuestionarioValidator $validator)
     {
         $this->repository = $repository;
         $this->validator  = $validator;
@@ -43,17 +43,16 @@ class ProjetosController extends Controller
     {
 
         $this->repository->pushCriteria(app('Prettus\Repository\Criteria\RequestCriteria'));
-        $projetos = $this->repository->all();
+        $questionarios = $this->repository->all();
 
         if (request()->wantsJson()) {
 
             return response()->json([
-                'data' => $projetos,
+                'data' => $questionarios,
             ]);
         }
 
-//        return view('projetos.index', compact('projetos'));
-        return $projetos;
+        return view('questionarios.index', compact('questionarios'));
     }
 
 
@@ -65,29 +64,29 @@ class ProjetosController extends Controller
     public function create()
     {
 
-        return view('projetos.create');
+        return view('questionarios.create');
     }
 
 
     /**
      * Store a newly created resource in storage.
      *
-     * @param  ProjetoCreateRequest $request
+     * @param  QuestionarioCreateRequest $request
      *
      * @return \Illuminate\Http\Response
      */
-    public function store(ProjetoCreateRequest $request)
+    public function store(QuestionarioCreateRequest $request)
     {
 
         try {
 
             $this->validator->with($request->all())->passesOrFail(ValidatorInterface::RULE_CREATE);
 
-            $projeto = $this->repository->create($request->all());
+            $questionario = $this->repository->create($request->all());
 
             $response = [
-                'message' => 'Projeto created.',
-                'data'    => $projeto->toArray(),
+                'message' => 'Questionario created.',
+                'data'    => $questionario->toArray(),
             ];
 
             if ($request->wantsJson()) {
@@ -118,31 +117,16 @@ class ProjetosController extends Controller
      */
     public function show($id)
     {
-        $projeto = $this->repository->find($id);
+        $questionario = $this->repository->find($id);
 
         if (request()->wantsJson()) {
 
             return response()->json([
-                'data' => $projeto,
+                'data' => $questionario,
             ]);
         }
 
-//        return view('projetos.show', compact('projeto'));
-        return $projeto;
-    }
-
-    public function findQuestionarios($id)
-    {
-        $projeto = $this->repository->find($id);
-
-        if (request()->wantsJson()) {
-
-            return response()->json([
-                'data' => $projeto,
-            ]);
-        }
-
-        return $projeto->questionarios;
+        return view('questionarios.show', compact('questionario'));
     }
 
 
@@ -156,32 +140,32 @@ class ProjetosController extends Controller
     public function edit($id)
     {
 
-        $projeto = $this->repository->find($id);
+        $questionario = $this->repository->find($id);
 
-        return view('projetos.edit', compact('projeto'));
+        return view('questionarios.edit', compact('questionario'));
     }
 
 
     /**
      * Update the specified resource in storage.
      *
-     * @param  ProjetoUpdateRequest $request
+     * @param  QuestionarioUpdateRequest $request
      * @param  string            $id
      *
      * @return Response
      */
-    public function update(ProjetoUpdateRequest $request, $id)
+    public function update(QuestionarioUpdateRequest $request, $id)
     {
 
         try {
 
             $this->validator->with($request->all())->passesOrFail(ValidatorInterface::RULE_UPDATE);
 
-            $projeto = $this->repository->update($request->all(), $id);
+            $questionario = $this->repository->update($request->all(), $id);
 
             $response = [
-                'message' => 'Projeto updated.',
-                'data'    => $projeto->toArray(),
+                'message' => 'Questionario updated.',
+                'data'    => $questionario->toArray(),
             ];
 
             if ($request->wantsJson()) {
@@ -219,11 +203,11 @@ class ProjetosController extends Controller
         if (request()->wantsJson()) {
 
             return response()->json([
-                'message' => 'Projeto deleted.',
+                'message' => 'Questionario deleted.',
                 'deleted' => $deleted,
             ]);
         }
 
-        return redirect()->back()->with('message', 'Projeto deleted.');
+        return redirect()->back()->with('message', 'Questionario deleted.');
     }
 }

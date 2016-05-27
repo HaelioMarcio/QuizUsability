@@ -6,16 +6,10 @@ use Illuminate\Database\Eloquent\Model;
 use Prettus\Repository\Contracts\Transformable;
 use Prettus\Repository\Traits\TransformableTrait;
 
-class Projeto extends Model implements Transformable
+class Avaliacao extends Model implements Transformable
 {
     use TransformableTrait;
-    
-    protected $table = 'projeto';
 
     protected $fillable = [];
-
-    public function questionarios() {
-        return $this->hasMany('App\Entities\Questionario');
-    }
 
 }
