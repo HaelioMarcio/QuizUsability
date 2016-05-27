@@ -27,5 +27,15 @@ class AppServiceProvider extends ServiceProvider
             'App\Repositories\HeuristicaRepository', 
             'App\Repositories\HeuristicaRepositoryEloquent'
         );
+
+        $this->app->bind(
+            'App\Repositories\ProjetoRepository',
+            'App\Repositories\ProjetoRepositoryEloquent'
+        );
+
+//        $this->app->bind(
+//            'App\Repositories\HeuristicaRepository',
+//            'App\Repositories\HeuristicaRepositoryEloquent'
+//        );
     }
 }
