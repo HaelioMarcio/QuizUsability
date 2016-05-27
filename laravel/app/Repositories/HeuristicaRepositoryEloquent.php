@@ -15,7 +15,7 @@ use App\Validators\HeuristicaValidator;
 class HeuristicaRepositoryEloquent extends BaseRepository implements HeuristicaRepository
 {
     /**
-     * Specify Model class nome
+     * Specify Model class name
      *
      * @return string
      */
@@ -27,7 +27,7 @@ class HeuristicaRepositoryEloquent extends BaseRepository implements HeuristicaR
     /**
     * Specify Validator class name
     *
-    * @return validator
+    * @return mixed
     */
     public function validator()
     {
