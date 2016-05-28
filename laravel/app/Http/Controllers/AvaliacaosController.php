@@ -7,27 +7,27 @@ use Illuminate\Http\Request;
 use App\Http\Requests;
 use Prettus\Validator\Contracts\ValidatorInterface;
 use Prettus\Validator\Exceptions\ValidatorException;
-use App\Http\Requests\ProjetoCreateRequest;
-use App\Http\Requests\ProjetoUpdateRequest;
-use App\Repositories\ProjetoRepository;
-use App\Validators\ProjetoValidator;
+use App\Http\Requests\AvaliacaoCreateRequest;
+use App\Http\Requests\AvaliacaoUpdateRequest;
+use App\Repositories\AvaliacaoRepository;
+use App\Validators\AvaliacaoValidator;
 
 
-class ProjetosController extends Controller
+class AvaliacaosController extends Controller
 {
 
     /**
-     * @var ProjetoRepository
+     * @var AvaliacaoRepository
      */
     protected $repository;
 
     /**
-     * @var ProjetoValidator
+     * @var AvaliacaoValidator
      */
     protected $validator;
 
 
-    public function __construct(ProjetoRepository $repository, ProjetoValidator $validator)
+    public function __construct(AvaliacaoRepository $repository, AvaliacaoValidator $validator)
     {
         $this->repository = $repository;
         $this->validator  = $validator;
@@ -43,17 +43,16 @@ class ProjetosController extends Controller
     {
 
         $this->repository->pushCriteria(app('Prettus\Repository\Criteria\RequestCriteria'));
-        $projetos = $this->repository->all();
+        $avaliacaos = $this->repository->all();
 
         if (request()->wantsJson()) {
 
             return response()->json([
-                'data' => $projetos,
+                'data' => $avaliacaos,
             ]);
         }
 
-//        return view('projetos.index', compact('projetos'));
-        return $projetos;
+        return view('avaliacaos.index', compact('avaliacaos'));
     }
 
 
@@ -64,29 +63,30 @@ class ProjetosController extends Controller
      */
     public function create()
     {
-        return view('projetos.create');
+
+        return view('avaliacaos.create');
     }
 
 
     /**
      * Store a newly created resource in storage.
      *
-     * @param  ProjetoCreateRequest $request
+     * @param  AvaliacaoCreateRequest $request
      *
      * @return \Illuminate\Http\Response
      */
-    public function store(ProjetoCreateRequest $request)
+    public function store(AvaliacaoCreateRequest $request)
     {
 
         try {
 
             $this->validator->with($request->all())->passesOrFail(ValidatorInterface::RULE_CREATE);
 
-            $projeto = $this->repository->create($request->all());
+            $avaliacao = $this->repository->create($request->all());
 
             $response = [
-                'message' => 'Projeto created.',
-                'data'    => $projeto->toArray(),
+                'message' => 'Avaliacao created.',
+                'data'    => $avaliacao->toArray(),
             ];
 
             if ($request->wantsJson()) {
@@ -117,31 +117,16 @@ class ProjetosController extends Controller
      */
     public function show($id)
     {
-        $projeto = $this->repository->find($id);
+        $avaliacao = $this->repository->find($id);
 
         if (request()->wantsJson()) {
 
             return response()->json([
-                'data' => $projeto,
+                'data' => $avaliacao,
             ]);
         }
 
-//        return view('projetos.show', compact('projeto'));
-        return $projeto;
-    }
-
-    public function findQuestionarios($id)
-    {
-        $projeto = $this->repository->find($id);
-
-        if (request()->wantsJson()) {
-
-            return response()->json([
-                'data' => $projeto,
-            ]);
-        }
-
-        return $projeto->questionarios;
+        return view('avaliacaos.show', compact('avaliacao'));
     }
 
 
@@ -155,32 +140,32 @@ class ProjetosController extends Controller
     public function edit($id)
     {
 
-        $projeto = $this->repository->find($id);
+        $avaliacao = $this->repository->find($id);
 
-        return view('projetos.edit', compact('projeto'));
+        return view('avaliacaos.edit', compact('avaliacao'));
     }
 
 
     /**
      * Update the specified resource in storage.
      *
-     * @param  ProjetoUpdateRequest $request
+     * @param  AvaliacaoUpdateRequest $request
      * @param  string            $id
      *
      * @return Response
      */
-    public function update(ProjetoUpdateRequest $request, $id)
+    public function update(AvaliacaoUpdateRequest $request, $id)
     {
 
         try {
 
             $this->validator->with($request->all())->passesOrFail(ValidatorInterface::RULE_UPDATE);
 
-            $projeto = $this->repository->update($request->all(), $id);
+            $avaliacao = $this->repository->update($request->all(), $id);
 
             $response = [
-                'message' => 'Projeto updated.',
-                'data'    => $projeto->toArray(),
+                'message' => 'Avaliacao updated.',
+                'data'    => $avaliacao->toArray(),
             ];
 
             if ($request->wantsJson()) {
@@ -218,11 +203,11 @@ class ProjetosController extends Controller
         if (request()->wantsJson()) {
 
             return response()->json([
-                'message' => 'Projeto deleted.',
+                'message' => 'Avaliacao deleted.',
                 'deleted' => $deleted,
             ]);
         }
 
-        return redirect()->back()->with('message', 'Projeto deleted.');
+        return redirect()->back()->with('message', 'Avaliacao deleted.');
     }
 }
