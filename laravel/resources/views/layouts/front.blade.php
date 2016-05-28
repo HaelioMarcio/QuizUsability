@@ -51,7 +51,7 @@
 
     <!-- JavaScripts -->
     <script src="{{url('vendor/jquery/jquery.min.js')}}"></script>
-    <script src="{{url('vendor/Materialize/dist/js/Materialize.min.js')}}"></script>
+    <script src="{{url('vendor/Materialize/dist/js/materialize.min.js')}}"></script>
     <script src="{{url('js/Chart.min.js')}}"></script>
     <script src="{{url('js/init.js')}}"></script>
 </body>

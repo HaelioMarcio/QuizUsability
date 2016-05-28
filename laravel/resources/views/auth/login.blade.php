@@ -11,12 +11,9 @@
                         {{ csrf_field() }}
 
                         <div class="form-group{{ $errors->has('email') ? ' has-error' : '' }}">
-                            
-
                             <div class="col-md-6 col-md-offset-3">
                                 <label class="control-label">Email</label>
                                 <input type="email" class="form-control" name="email" value="{{ old('email') }}">
-
                                 @if ($errors->has('email'))
                                     <span class="help-block">
                                         <strong>{{ $errors->first('email') }}</strong>
@@ -24,7 +21,7 @@
                                 @endif
                             </div>
                         </div>
-
+                        
                         <div class="form-group{{ $errors->has('password') ? ' has-error' : '' }}">
                             <div class="col-md-6 col-md-offset-3">
                                 <label class="control-label">Senha</label>
@@ -48,14 +45,18 @@
                         </div>
 
                         <div class="form-group">
-                            <div class="col-md-6 col-md-offset-4">
+                            <div class="col-md-6 col-md-offset-3">
                                 <button type="submit" class="btn btn-primary">
                                     <i class="fa fa-btn fa-sign-in"></i>Acessar
                                 </button>
-
+                                <br>
                                 <a class="btn btn-link" href="{{ url('/password/reset') }}">Esqueceu sua senha?</a>
+                                <a href="/register">Cadastrar</a>
                             </div>
                         </div>
+                        
+                        
+                        
                     </form>
                 </div>
             </div>
