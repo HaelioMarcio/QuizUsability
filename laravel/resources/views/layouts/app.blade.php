@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
     <title>QuizAbility</title>
-
+    
     <!-- Fonts -->
 
     <!-- Styles -->
@@ -21,6 +21,18 @@
         .fa-btn {
             margin-right: 6px;
         }
+        .control{
+            position: absolute;
+            right: 25px;
+        }
+        .control a span{
+            -webkit-transition: color 1s, trasnform 1s;
+            color: #CCCCCC;
+        }
+        .control a:hover span{
+            color: #FFFFFF;
+        }
+
     </style>
 </head>
 <body id="app-layout">

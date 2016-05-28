@@ -16,5 +16,7 @@ class DatabaseSeeder extends Seeder
         $this->call(HeuristicaTableSeeder::class);
         $this->call(RespostaTableSeeder::class);
         $this->call(PerguntaTableSeeder::class);
+        
+
     }
 }
