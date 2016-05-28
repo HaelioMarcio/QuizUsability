@@ -14,8 +14,9 @@ class ProjetoTableSeeder extends Seeder
     {
         DB::table('projeto')->insert([
             [
-                'descricao' => 'Projeto Um',
-                'projeto_id' => 1,
+                'titulo' => 'Projeto Um',
+                'descricao' => 'Descrição do projeto um',
+                'user_id' => 1,
                 'created_at' => Carbon::now()
             ]
         ]);

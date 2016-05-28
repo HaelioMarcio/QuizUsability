@@ -65,7 +65,7 @@ return [
     |
     */
 
-    'locale' => 'en',
+    'locale' => 'pt-br',
 
     /*
     |--------------------------------------------------------------------------
@@ -108,7 +108,7 @@ return [
     |
     */
 
-    'log' => env('APP_LOG', 'single'),
+    'log' => env('APP_LOG', 'daily'),
 
     /*
     |--------------------------------------------------------------------------
@@ -159,6 +159,8 @@ return [
         /* Repository */
         Prettus\Repository\Providers\RepositoryServiceProvider::class,
 
+        /* DEBUG BAR*/
+        Barryvdh\Debugbar\ServiceProvider::class,
     ],
 
     /*
@@ -204,6 +206,8 @@ return [
         'URL' => Illuminate\Support\Facades\URL::class,
         'Validator' => Illuminate\Support\Facades\Validator::class,
         'View' => Illuminate\Support\Facades\View::class,
+        'Debugbar' => Barryvdh\Debugbar\Facade::class,
+
 
     ],
 

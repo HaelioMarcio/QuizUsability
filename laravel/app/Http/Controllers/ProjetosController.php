@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
+use Illuminate\Support\Facades\Auth;
 use Prettus\Validator\Contracts\ValidatorInterface;
 use Prettus\Validator\Exceptions\ValidatorException;
 use App\Http\Requests\ProjetoCreateRequest;
@@ -82,7 +83,10 @@ class ProjetosController extends Controller
 
             $this->validator->with($request->all())->passesOrFail(ValidatorInterface::RULE_CREATE);
 
-            $projeto = $this->repository->create($request->all());
+            $params = $request->all();
+            $params['user_id'] = Auth::user()->id;
+            $projeto = $this->repository->create($params);
+
 
             $response = [
                 'message' => 'Projeto created.',
