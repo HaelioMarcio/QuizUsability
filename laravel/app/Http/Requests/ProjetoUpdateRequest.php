@@ -3,6 +3,7 @@
 namespace App\Http\Requests;
 
 use App\Http\Requests\Request;
+use Illuminate\Support\Facades\Auth;
 
 class ProjetoUpdateRequest extends Request
 {
@@ -13,7 +14,7 @@ class ProjetoUpdateRequest extends Request
      */
     public function authorize()
     {
-        return false;
+        return Auth::check();
     }
 
     /**

@@ -30,6 +30,7 @@ class ProjetosController extends Controller
 
     public function __construct(ProjetoRepository $repository, ProjetoValidator $validator)
     {
+        $this->middleware('auth');
         $this->repository = $repository;
         $this->validator  = $validator;
     }
@@ -44,7 +45,7 @@ class ProjetosController extends Controller
     {
 
         $this->repository->pushCriteria(app('Prettus\Repository\Criteria\RequestCriteria'));
-        $projetos = $this->repository->all();
+        $projetos = $this->repository->findWhere(['user_id' => Auth::user()->id]);
 
         if (request()->wantsJson()) {
 
@@ -53,8 +54,7 @@ class ProjetosController extends Controller
             ]);
         }
 
-//        return view('projetos.index', compact('projetos'));
-        return $projetos;
+        return view('projetos.index', compact('projetos'));
     }
 
 
@@ -89,7 +89,7 @@ class ProjetosController extends Controller
 
 
             $response = [
-                'message' => 'Projeto created.',
+                'message' => 'Projeto criado com sucesso.',
                 'data'    => $projeto->toArray(),
             ];
 
@@ -98,7 +98,8 @@ class ProjetosController extends Controller
                 return response()->json($response);
             }
 
-            return redirect()->back()->with('message', $response['message']);
+//            return redirect()->back()->with('message', $response['message']);
+            return redirect()->to('projetos')->with('message', $response['message']);
         } catch (ValidatorException $e) {
             if ($request->wantsJson()) {
                 return response()->json([
@@ -183,7 +184,7 @@ class ProjetosController extends Controller
             $projeto = $this->repository->update($request->all(), $id);
 
             $response = [
-                'message' => 'Projeto updated.',
+                'message' => 'Projeto atualizado com sucesso.',
                 'data'    => $projeto->toArray(),
             ];
 
@@ -191,8 +192,8 @@ class ProjetosController extends Controller
 
                 return response()->json($response);
             }
-
-            return redirect()->back()->with('message', $response['message']);
+//            return redirect()->back()->with('message', $response['message']);
+            return redirect()->to('projetos')->with('message', $response['message']);
         } catch (ValidatorException $e) {
 
             if ($request->wantsJson()) {
@@ -222,11 +223,10 @@ class ProjetosController extends Controller
         if (request()->wantsJson()) {
 
             return response()->json([
-                'message' => 'Projeto deleted.',
+                'message' => 'Projeto removido.',
                 'deleted' => $deleted,
             ]);
         }
-
-        return redirect()->back()->with('message', 'Projeto deleted.');
+        return redirect()->to('projetos')->with('message', 'Projeto removido.');
     }
 }

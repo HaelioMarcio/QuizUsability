@@ -21,19 +21,8 @@ Route::get('/home', 'HomeController@index');
 
 Route::get('/heuristicas', 'HeuristicasController@listAll');
 Route::get('/heuristicas/{id}', 'HeuristicasController@show');
-
-//Route::get('/projetos/create', 'ProjetosController@create');
-
-//Route::group(['prefix' => 'projetos'], function(){
-//	Route::get('create', function(){
-//		return view('projetos.create');
-//	});
+//Route::group(['middleware' => 'auth'], function (){
+//    Route::resource('projetos', 'ProjetosController');
 //});
-
-//Route::get('/projetos', 'ProjetosController@index');
-
-//Route::get('/projetos/{id}', 'ProjetosController@show');
-
-//Route::get('/projetos/{id}/questionarios', 'ProjetosController@findQuestionarios');
-
 Route::resource('projetos', 'ProjetosController');
+

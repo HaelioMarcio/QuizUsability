@@ -30,7 +30,7 @@
         <li><a href="/login">Acessar</a></li>
         <li><a href="/register">Registre-se</a></li>
         @else
-            <li><a href="/home">Meus Projetos</a></li>
+            <li><a href="{{url('/projetos')}}">Meus Projetos</a></li>
             <li><a href="/logout">Logout</a></li>
         @endif
       </ul>
@@ -39,7 +39,7 @@
         <li><a href="/login">Acessar</a></li>
         <li><a href="/register">Registre-se</a></li>
         @else
-            <li><a href="/home">Meus Projetos</a></li>
+            <li><a href="{{url('/projetos')}}">Meus Projetos</a></li>
             <li><a href="/logout">Logout</a></li>
         @endif
       </ul>

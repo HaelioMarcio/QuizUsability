@@ -34,6 +34,7 @@
         }
 
     </style>
+    <script src="{{url('vendor/jquery/jquery.min.js')}}"></script>
 </head>
 <body id="app-layout">
     <nav class="navbar navbar-inverse navbar-static-top">
@@ -58,7 +59,7 @@
                 <!-- Left Side Of Navbar -->
                 <ul class="nav navbar-nav">
                     @if (!Auth::guest())
-                        <li><a href="{{ url('/home') }}">Meus Projetos</a></li>
+                        <li><a href="{{ url('/projetos') }}">Meus Projetos</a></li>
                     @endif
                 </ul>
 
@@ -88,7 +89,7 @@
     @yield('content')
 
     <!-- JavaScripts -->
-    <script src="{{url('vendor/jquery/jquery.min.js')}}"></script>
+
     <script src="{{url('vendor/bootstrap/js/bootstrap.min.js')}}"></script>
 </body>
 </html>
