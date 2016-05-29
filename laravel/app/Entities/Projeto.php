@@ -12,7 +12,15 @@ class Projeto extends Model implements Transformable
     
     protected $table = 'projeto';
 
-    protected $fillable = [];
+    protected $fillable = ['titulo', 'descricao', 'user_id'];
+
+    /**
+     * @return array
+     */
+    public function user()
+    {
+        return $this->belongsTo('App\User');
+    }
 
     public function questionarios() {
         return $this->hasMany('App\Entities\Questionario');
