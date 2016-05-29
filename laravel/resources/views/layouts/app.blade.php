@@ -34,7 +34,7 @@
         }
 
     </style>
-    <script src="{{url('vendor/jquery/jquery.min.js')}}"></script>
+
 </head>
 <body id="app-layout">
     <nav class="navbar navbar-inverse navbar-static-top">
@@ -76,7 +76,6 @@
                             </a>
 
                             <ul class="dropdown-menu" role="menu">
-                                <li><a href="{{ url('/update') }}"><i class="fa fa-btn fa-sign-out"></i>Alterar Dados</a></li>
                                 <li><a href="{{ url('/logout') }}"><i class="fa fa-btn fa-sign-out"></i>Logout</a></li>
                             </ul>
                         </li>
@@ -89,7 +88,10 @@
     @yield('content')
 
     <!-- JavaScripts -->
-
+    <script src="{{url('vendor/jquery/jquery.min.js')}}"></script>
     <script src="{{url('vendor/bootstrap/js/bootstrap.min.js')}}"></script>
+    @if(!Auth::guest())
+        <script src="{{url('js/laravel.js')}}"></script>
+    @endif
 </body>
 </html>

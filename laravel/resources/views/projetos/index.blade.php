@@ -32,7 +32,7 @@
                             <div class="control">
                                 <a class="text-left" href="/projetos/{{$projeto->id}}/edit"><span class="glyphicon glyphicon-pencil" aria-hidden="true"> </span></a>
 
-                                <a class="text-right" href="/projetos/{{$projeto->id}}" data-method="delete" data-confirm="Tem certeza ?"><span class="glyphicon glyphicon-trash" aria-hidden="true"> </span></a>
+                                <a class="text-right" href="/projetos/{{$projeto->id}}" data-method="delete" data-confirm="Tem certeza ?" data-token="{{csrf_token()}}"><span class="glyphicon glyphicon-trash" aria-hidden="true"> </span></a>
                             </div>
                             <h1>{{$projeto->titulo}}</h1>
                         </div>
@@ -53,70 +53,4 @@
             @endforelse
         </div>
     </div>
-    <script>
-        $(document).ready(function(){
-            var laravel = {
-                initialize: function() {
-                    this.methodLinks = $('a[data-method]');
-                    this.registerEvents();
-                },
-
-                registerEvents: function() {
-                    this.methodLinks.on('click', this.handleMethod);
-                },
-
-                handleMethod: function(e) {
-                    var link = $(this);
-                    var httpMethod = link.data('method').toUpperCase();
-                    var form;
-
-                    if ( $.inArray(httpMethod, ['PUT', 'DELETE']) === - 1 ) {
-                        return;
-                    }
-
-                    // Allow user to optionally provide data-confirm="Are you sure?"
-                    if ( link.data('confirm') ) {
-                        if ( ! laravel.verifyConfirm(link) ) {
-                            return false;
-                        }
-                    }
-
-                    form = laravel.createForm(link);
-                    form.submit();
-
-                    e.preventDefault();
-                },
-
-                verifyConfirm: function(link) {
-                    return confirm(link.data('confirm'));
-                },
-
-                createForm: function(link) {
-                    var form =
-                            $('<form>', {
-                                'method': 'POST',
-                                'action': link.attr('href')
-                            });
-
-                    var token =
-                            $('<input>', {
-                                'type': 'hidden',
-                                'name': '_token',
-                                'value': '{{csrf_token()}}'
-                            });
-
-                    var hiddenInput =
-                            $('<input>', {
-                                'name': '_method',
-                                'type': 'hidden',
-                                'value': link.data('method')
-                            });
-
-                    return form.append(token, hiddenInput).appendTo('body');
-                }
-            };
-
-            laravel.initialize();
-        });
-    </script>
 @endsection
