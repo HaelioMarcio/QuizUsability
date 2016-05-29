@@ -23,7 +23,7 @@ class AppServiceProvider extends ServiceProvider
      */
     public function register()
     {
-         $this->app->bind(
+        $this->app->bind(
             'App\Repositories\HeuristicaRepository', 
             'App\Repositories\HeuristicaRepositoryEloquent'
         );
@@ -31,6 +31,11 @@ class AppServiceProvider extends ServiceProvider
         $this->app->bind(
             'App\Repositories\ProjetoRepository',
             'App\Repositories\ProjetoRepositoryEloquent'
+        );
+
+        $this->app->bind(
+            'App\Repositories\QuestionarioRepository',
+            'App\Repositories\QuestionarioRepositoryEloquent'
         );
 
 //        $this->app->bind(

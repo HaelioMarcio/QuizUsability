@@ -59,6 +59,7 @@
                 <!-- Left Side Of Navbar -->
                 <ul class="nav navbar-nav">
                     @if (!Auth::guest())
+                        <li><a href="{{ url('/home') }}">Início</a></li>
                         <li><a href="{{ url('/projetos') }}">Meus Projetos</a></li>
                     @endif
                 </ul>
@@ -76,7 +77,6 @@
                             </a>
 
                             <ul class="dropdown-menu" role="menu">
-                                <li><a href="{{ url('/update') }}"><i class="fa fa-btn fa-sign-out"></i>Alterar Dados</a></li>
                                 <li><a href="{{ url('/logout') }}"><i class="fa fa-btn fa-sign-out"></i>Logout</a></li>
                             </ul>
                         </li>

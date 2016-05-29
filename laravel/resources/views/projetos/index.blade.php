@@ -41,7 +41,7 @@
                                 Avaliações: 15 <br>
                                 Tipo: Web</p>
                             <p class="text-center">
-                                <a href="" class="btn btn-warning">Gerar Quiz</a>
+                                <a href="/questionarios/create/{{$projeto->id}}" class="btn btn-warning">Gerar Quiz</a>
                                 <a href="" class="btn btn-primary">Resultados</a>
                             </p>
 

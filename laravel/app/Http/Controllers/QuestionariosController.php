@@ -7,11 +7,18 @@ use Illuminate\Http\Request;
 use App\Http\Requests;
 use Prettus\Validator\Contracts\ValidatorInterface;
 use Prettus\Validator\Exceptions\ValidatorException;
+
+//QuestionarioRepository
 use App\Http\Requests\QuestionarioCreateRequest;
 use App\Http\Requests\QuestionarioUpdateRequest;
 use App\Repositories\QuestionarioRepository;
 use App\Validators\QuestionarioValidator;
 
+//HeuristicaRepository
+use App\Http\Requests\HeuristicaCreateRequest;
+use App\Http\Requests\HeuristicaUpdateRequest;
+use App\Repositories\HeuristicaRepository;
+use App\Validators\HeuristicaValidator;
 
 class QuestionariosController extends Controller
 {
@@ -26,11 +33,16 @@ class QuestionariosController extends Controller
      */
     protected $validator;
 
+    protected $HeuristicaRepository;
+    protected $HeuristicaValidator;
 
-    public function __construct(QuestionarioRepository $repository, QuestionarioValidator $validator)
+
+    public function __construct(QuestionarioRepository $repository, QuestionarioValidator $validator, HeuristicaRepository $HeuristicaRepository, HeuristicaValidator $HeuristicaValidator)
     {
         $this->repository = $repository;
         $this->validator  = $validator;
+        $this->HeuristicaRepository = $HeuristicaRepository;
+        $this->HeuristicaValidator = $HeuristicaValidator;
     }
 
 
@@ -51,8 +63,8 @@ class QuestionariosController extends Controller
                 'data' => $questionarios,
             ]);
         }
-
-        return view('questionarios.index', compact('questionarios'));
+          //return view('questionarios.index', compact('questionarios'));
+        return $questionarios;
     }
 
 
@@ -62,9 +74,18 @@ class QuestionariosController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function create()
-    {
-
-        return view('questionarios.create');
+    {    
+        $this->HeuristicaRepository->pushCriteria(app('Prettus\Repository\Criteria\RequestCriteria'));
+        //$heuristicas = $this->HeuristicaRepository->all();
+        $heuristicas = $this->HeuristicaRepository->with(['perguntas']);
+            
+        if (Request()->wantsJson()) {
+            return response()->json([
+                'data' => $heuristicas,
+            ]);
+        }       
+        return view('questionarios.create', compact('heuristicas'));
+        //return view('questionarios.create');
     }
 
 

@@ -12,10 +12,8 @@ use App\Http\Requests\AvaliacaoUpdateRequest;
 use App\Repositories\AvaliacaoRepository;
 use App\Validators\AvaliacaoValidator;
 
-
 class AvaliacaosController extends Controller
 {
-
     /**
      * @var AvaliacaoRepository
      */
