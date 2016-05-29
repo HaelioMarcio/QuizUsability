@@ -27,3 +27,5 @@ Route::get('/avaliacao/{token}', 'AvaliacaoController@listAll');
 //});
 Route::resource('projetos', 'ProjetosController');
 
+Route::get('questionarios/create/{id}', 'QuestionariosController@create');
+Route::resource('questionarios', 'QuestionariosController');

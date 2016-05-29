@@ -59,6 +59,7 @@
                 <!-- Left Side Of Navbar -->
                 <ul class="nav navbar-nav">
                     @if (!Auth::guest())
+                        <li><a href="{{ url('/home') }}">Início</a></li>
                         <li><a href="{{ url('/projetos') }}">Meus Projetos</a></li>
                     @endif
                 </ul>
