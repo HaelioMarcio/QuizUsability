@@ -18,7 +18,6 @@ use App\Validators\QuestionarioValidator;
 use App\Http\Requests\HeuristicaCreateRequest;
 use App\Http\Requests\HeuristicaUpdateRequest;
 use App\Repositories\HeuristicaRepository;
-use App\Validators\HeuristicaValidator;
 
 class QuestionariosController extends Controller
 {
@@ -61,8 +60,8 @@ class QuestionariosController extends Controller
                 'data' => $questionarios,
             ]);
         }
-          //return view('questionarios.index', compact('questionarios'));
-        return $questionarios;
+        return view('questionarios.index', compact('questionarios'));
+        //return $questionarios;
     }
 
 
@@ -79,11 +78,8 @@ class QuestionariosController extends Controller
             return response()->json([
                 'data' => $heuristicas,
             ]);
-        }
-
-        //return $heuristicas;
+        }       
         return view('questionarios.create', compact('heuristicas'));
-        //return view('questionarios.create');
     }
 
 

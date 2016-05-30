@@ -37,14 +37,13 @@
                             <h1>{{$projeto->titulo}}</h1>
                         </div>
                         <div class="panel-body">
-                            <p>Questionários: 1 <br>
-                                Avaliações: 15 <br>
-                                Tipo: Web</p>
+                            <p>{{str_limit($projeto->descricao, 60)}}</p>
                             <p class="text-center">
-                                <a href="/questionarios/create/{{$projeto->id}}" class="btn btn-warning">Gerar Quiz</a>
+                                <a  href="/projetos/{{$projeto->id}}/questionarios/" class="btn btn-warning" type="button">
+                                    Quiz <span class="badge">{{count($projeto->questionarios)}}</span>
+                                </a>
                                 <a href="" class="btn btn-primary">Resultados</a>
                             </p>
-
                         </div>
                     </div>
                 </div>
