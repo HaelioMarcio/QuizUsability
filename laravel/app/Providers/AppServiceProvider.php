@@ -38,9 +38,5 @@ class AppServiceProvider extends ServiceProvider
             'App\Repositories\QuestionarioRepositoryEloquent'
         );
 
-//        $this->app->bind(
-//            'App\Repositories\HeuristicaRepository',
-//            'App\Repositories\HeuristicaRepositoryEloquent'
-//        );
     }
 }

@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>QuizAbility</title>  
+    <title>QuizAbility</title>
     <!-- Fonts -->
 
     <!-- Styles -->
@@ -38,8 +38,6 @@
             margin-right: 20px;
         }
     </style>
-    
-    <script src="{{url('vendor/jquery/jquery.min.js')}}"></script>
 </head>
 <body id="app-layout">
     <nav class="navbar navbar-inverse navbar-static-top">
@@ -94,7 +92,10 @@
     @yield('content')
 
     <!-- JavaScripts -->
-
+    <script src="{{url('vendor/jquery/jquery.min.js')}}"></script>
     <script src="{{url('vendor/bootstrap/js/bootstrap.min.js')}}"></script>
+    @if(!Auth::guest())
+        <script src="{{url('js/laravel.js')}}"></script>
+    @endif
 </body>
 </html>

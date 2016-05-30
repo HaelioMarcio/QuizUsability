@@ -21,7 +21,7 @@
 					</ul>
 					<hr class="col-md-12">
 					<div class="row">
-						
+
 						<div class="col-md-2 col-md-offset-5">
 							<button type="submit" class="btn btn-primary">Gerar</button>
 							<a href="{{url('projetos/2/questionarios')}}" class="btn btn-default ">Cancelar</a>
@@ -30,7 +30,7 @@
 				</form>
 
 
-			
+
 		</div>
 	</div>
 

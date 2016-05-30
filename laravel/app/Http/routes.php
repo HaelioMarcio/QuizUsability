@@ -21,18 +21,11 @@ Route::get('/home', 'HomeController@index');
 
 Route::get('/heuristicas', 'HeuristicasController@listAll');
 Route::get('/heuristicas/{id}', 'HeuristicasController@show');
-
-//Route::group(['middleware' => 'auth'], function (){
-//    Route::resource('projetos', 'ProjetosController');
-//});
+Route::get('/avaliacao/{token}', 'AvaliacaoController@listAll');
 
 Route::resource('projetos', 'ProjetosController');
 
-//findQuestionarios
 Route::get('projetos/{id}/questionarios', 'ProjetosController@findQuestionarios');
+Route::get('/questionarios', 'QuestionariosController@index');
 Route::get('projetos/{id}/questionarios/create', 'QuestionariosController@create');
-
-
-
-
-
+Route::get('/avaliacoes', 'ProjetosController@findAvaliacoes');

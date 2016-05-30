@@ -45,8 +45,7 @@ class HeuristicasController extends Controller
             ]);
         }
 
-        // return view('heuristicas.index', compact('heuristicas'));
-        return $heuristicas;
+        return view('heuristicas.index', compact('heuristicas'));
     }
 
 
