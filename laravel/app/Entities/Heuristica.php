@@ -15,7 +15,7 @@ class Heuristica extends Model implements Transformable
 
     public function perguntas()
 	{
-		return $this->hasMany('App\Entities\Pergunta');
+		return $this->hasMany('App\App\Entities\Pergunta');
 	}
 
 }

@@ -4,14 +4,11 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-
-    <title>QuizAbility</title>
-    
+    <title>QuizAbility</title>  
     <!-- Fonts -->
 
     <!-- Styles -->
     <link rel="stylesheet" href="{{url('vendor/bootstrap/css/bootstrap.min.css')}}">
-
     <style>
         body {
             font-family: 'Lato';
@@ -24,6 +21,7 @@
         .control{
             position: absolute;
             right: 25px;
+            top: 5px;
         }
         .control a span{
             -webkit-transition: color 1s, trasnform 1s;
@@ -32,8 +30,15 @@
         .control a:hover span{
             color: #FFFFFF;
         }
-
+        .title-heuristic{
+            color: #CCC;
+        }
+        .list-heuristic li{
+            list-style: none;
+            margin-right: 20px;
+        }
     </style>
+    
     <script src="{{url('vendor/jquery/jquery.min.js')}}"></script>
 </head>
 <body id="app-layout">

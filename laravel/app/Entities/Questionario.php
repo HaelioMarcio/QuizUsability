@@ -19,7 +19,7 @@ class Questionario extends Model implements Transformable
      */
     public function projeto()
     {
-        return $this->belongsTo('App\Entities\Projeto');
+        return $this->belongsTo('App\App\Entities\Projeto');
     }
     
 

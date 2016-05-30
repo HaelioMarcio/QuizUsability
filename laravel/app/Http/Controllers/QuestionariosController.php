@@ -18,7 +18,6 @@ use App\Validators\QuestionarioValidator;
 use App\Http\Requests\HeuristicaCreateRequest;
 use App\Http\Requests\HeuristicaUpdateRequest;
 use App\Repositories\HeuristicaRepository;
-use App\Validators\HeuristicaValidator;
 
 class QuestionariosController extends Controller
 {
@@ -34,15 +33,12 @@ class QuestionariosController extends Controller
     protected $validator;
 
     protected $HeuristicaRepository;
-    protected $HeuristicaValidator;
 
-
-    public function __construct(QuestionarioRepository $repository, QuestionarioValidator $validator, HeuristicaRepository $HeuristicaRepository, HeuristicaValidator $HeuristicaValidator)
+    public function __construct(QuestionarioRepository $repository, QuestionarioValidator $validator, HeuristicaRepository $HeuristicaRepository)
     {
         $this->repository = $repository;
         $this->validator  = $validator;
         $this->HeuristicaRepository = $HeuristicaRepository;
-        $this->HeuristicaValidator = $HeuristicaValidator;
     }
 
 
@@ -63,8 +59,8 @@ class QuestionariosController extends Controller
                 'data' => $questionarios,
             ]);
         }
-          //return view('questionarios.index', compact('questionarios'));
-        return $questionarios;
+        return view('questionarios.index', compact('questionarios'));
+        //return $questionarios;
     }
 
 
@@ -77,8 +73,8 @@ class QuestionariosController extends Controller
     {    
         $this->HeuristicaRepository->pushCriteria(app('Prettus\Repository\Criteria\RequestCriteria'));
         //$heuristicas = $this->HeuristicaRepository->all();
-        $heuristicas = $this->HeuristicaRepository->with(['perguntas']);
-            
+        $heuristicas = $this->HeuristicaRepository->with(['perguntas'])->all();
+
         if (Request()->wantsJson()) {
             return response()->json([
                 'data' => $heuristicas,
@@ -98,7 +94,7 @@ class QuestionariosController extends Controller
      */
     public function store(QuestionarioCreateRequest $request)
     {
-
+        
         try {
 
             $this->validator->with($request->all())->passesOrFail(ValidatorInterface::RULE_CREATE);

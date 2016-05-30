@@ -21,10 +21,18 @@ Route::get('/home', 'HomeController@index');
 
 Route::get('/heuristicas', 'HeuristicasController@listAll');
 Route::get('/heuristicas/{id}', 'HeuristicasController@show');
+
 //Route::group(['middleware' => 'auth'], function (){
 //    Route::resource('projetos', 'ProjetosController');
 //});
+
 Route::resource('projetos', 'ProjetosController');
 
-Route::get('questionarios/create/{id}', 'QuestionariosController@create');
-Route::resource('questionarios', 'QuestionariosController');
+//findQuestionarios
+Route::get('projetos/{id}/questionarios', 'ProjetosController@findQuestionarios');
+Route::get('projetos/{id}/questionarios/create', 'QuestionariosController@create');
+
+
+
+
+

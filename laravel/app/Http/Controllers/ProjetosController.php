@@ -146,7 +146,7 @@ class ProjetosController extends Controller
             ]);
         }
 
-        return $projeto->questionarios;
+        return view('questionarios.index', compact('questionarios'));
     }
 
 
