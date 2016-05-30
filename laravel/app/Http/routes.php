@@ -22,9 +22,7 @@ Route::get('/home', 'HomeController@index');
 Route::get('/heuristicas', 'HeuristicasController@listAll');
 Route::get('/heuristicas/{id}', 'HeuristicasController@show');
 Route::get('/avaliacao/{token}', 'AvaliacaoController@listAll');
-//Route::group(['middleware' => 'auth'], function (){
-//    Route::resource('projetos', 'ProjetosController');
-//});
+
 Route::resource('projetos', 'ProjetosController');
 
 Route::get('questionarios/create/{id}', 'QuestionariosController@create');

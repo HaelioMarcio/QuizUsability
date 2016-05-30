@@ -5,9 +5,18 @@
 		<div class="section">
 			<h3>Gerador de Questionário</h3>
 			<div class="row">
-				@foreach($heuristicas as $heuristica)
-					{{$heuristica}}
-				@endforeach()
+				<ul>
+                    @foreach($heuristicas as $heuristica)
+					    <li>{{$heuristica->descricao}}
+                            <p>Perguntas: </p>
+                            <ul>
+                                @foreach($heuristica->perguntas as $pergunta)
+                                    <li>{{$pergunta->descricao}}</li>
+                                @endforeach
+                            </ul>
+                        </li>
+				    @endforeach()
+                </ul>
 			</div>
 		</div>
 	</div>

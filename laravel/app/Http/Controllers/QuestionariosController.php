@@ -33,16 +33,14 @@ class QuestionariosController extends Controller
      */
     protected $validator;
 
-    protected $HeuristicaRepository;
-    protected $HeuristicaValidator;
+    protected $heuristicaRepository;
 
 
-    public function __construct(QuestionarioRepository $repository, QuestionarioValidator $validator, HeuristicaRepository $HeuristicaRepository, HeuristicaValidator $HeuristicaValidator)
+    public function __construct(QuestionarioRepository $repository, QuestionarioValidator $validator, HeuristicaRepository $heuristicaRepository)
     {
         $this->repository = $repository;
         $this->validator  = $validator;
-        $this->HeuristicaRepository = $HeuristicaRepository;
-        $this->HeuristicaValidator = $HeuristicaValidator;
+        $this->heuristicaRepository = $heuristicaRepository;
     }
 
 
@@ -75,15 +73,15 @@ class QuestionariosController extends Controller
      */
     public function create()
     {    
-        $this->HeuristicaRepository->pushCriteria(app('Prettus\Repository\Criteria\RequestCriteria'));
-        //$heuristicas = $this->HeuristicaRepository->all();
-        $heuristicas = $this->HeuristicaRepository->with(['perguntas']);
-            
+        $this->heuristicaRepository->pushCriteria(app('Prettus\Repository\Criteria\RequestCriteria'));
+        $heuristicas = $this->heuristicaRepository->with(['perguntas'])->all();
         if (Request()->wantsJson()) {
             return response()->json([
                 'data' => $heuristicas,
             ]);
-        }       
+        }
+
+        //return $heuristicas;
         return view('questionarios.create', compact('heuristicas'));
         //return view('questionarios.create');
     }
