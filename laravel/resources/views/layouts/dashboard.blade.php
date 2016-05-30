@@ -20,14 +20,12 @@
     <link href="{{url('dashboard/css/demo.css')}}" rel="stylesheet" />
 
     <!--     Fonts and icons     -->
-    <link href="http://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
-    <link href='http://fonts.googleapis.com/css?family=Roboto:400,700,300' rel='stylesheet' type='text/css'>
     <link href="{{url('dashboard/css/pe-icon-7-stroke.css')}}" rel="stylesheet" />
 
 </head>
 <body>
 <div class="wrapper">
-    <div class="sidebar" data-color="blue" data-image="assets/img/sidebar-5.jpg">
+    <div class="sidebar" data-color="blue" data-image="dashboard/img/sidebar-5.jpg">
 
         <!--
 
@@ -45,41 +43,36 @@
 
             <ul class="nav">
                 <li class="active">
-                    <a href="dashboard.html">
+                    <a href="{{url('/home')}}">
                         <i class="pe-7s-graph"></i>
                         <p>Dashboard</p>
                     </a>
                 </li>
                 <li>
-                    <a href="user.html">
-                        <i class="pe-7s-user"></i>
+                    <a href="{{url('/projetos')}}">
+                        <i class="pe-7s-network"></i>
                         <p>Projetos</p>
                     </a>
                 </li>
                 <li>
-                    <a href="table.html">
+                    <a href="{{url('/questionarios')}}">
                         <i class="pe-7s-news-paper"></i>
                         <p>Questionários</p>
                     </a>
                 </li>
                 <li>
-                    <a href="typography.html">
+                    <a href="{{url('/avaliacoes')}}">
                         <i class="pe-7s-note2"></i>
                         <p>Avaliações</p>
                     </a>
                 </li>
                 <li>
-                    <a href="icons.html">
+                    <a href="{{url('/heuristicas')}}">
                         <i class="pe-7s-science"></i>
-                        <p>Perguntas</p>
-                    </a>
-                </li>
-                <li>
-                    <a href="notifications.html">
-                        <i class="pe-7s-bell"></i>
                         <p>Heurísticas</p>
                     </a>
                 </li>
+
             </ul>
         </div>
     </div>
@@ -94,7 +87,7 @@
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                     </button>
-                    <a class="navbar-brand" href="#">Dashboard</a>
+                    <a class="navbar-brand" href="javascript:;">@yield('titulo')</a>
                 </div>
                 <div class="collapse navbar-collapse">
                     <ul class="nav navbar-nav navbar-left">
@@ -128,54 +121,7 @@
 
         <div class="content">
             <div class="container-fluid">
-                <div class="row">
-                    <div class="col-md-6">
-                        <div class="card">
-                            <div class="header">
-                                <h4 class="title">Projetos</h4>
-                                <p class="category">Nível de usabilidade</p>
-                            </div>
-                            <div class="content">
-                                <div id="chartPreferences" class="ct-chart ct-perfect-fourth"></div>
-
-                                <div class="footer">
-                                    <div class="legend">
-                                        <i class="fa fa-circle text-danger"></i> Baixa
-                                        <i class="fa fa-circle text-warning"></i> Média
-                                        <i class="fa fa-circle text-info"></i> Alta
-                                    </div>
-                                    <hr>
-                                    <div class="stats">
-                                        <i class="fa fa-clock-o"></i> Última avaliação: 29/05/2016
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="col-md-6">
-                        <div class="card">
-                            <div class="header">
-                                <h4 class="title">Users Behavior</h4>
-                                <p class="category">24 Hours performance</p>
-                            </div>
-                            <div class="content">
-                                <div id="chartHours" class="ct-chart"></div>
-                                <div class="footer">
-                                    <div class="legend">
-                                        <i class="fa fa-circle text-info"></i> Open
-                                        <i class="fa fa-circle text-danger"></i> Click
-                                        <i class="fa fa-circle text-warning"></i> Click Second Time
-                                    </div>
-                                    <hr>
-                                    <div class="stats">
-                                        <i class="fa fa-history"></i> Updated 3 minutes ago
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+                @yield('content')
             </div>
         </div>
 
@@ -212,21 +158,12 @@
 
 <!-- Light Bootstrap Table DEMO methods, don't include it in your project! -->
 <script src="{{url('dashboard/js/demo.js')}}"></script>
-
+@if(!Auth::guest())
+    <script src="{{url('js/laravel.js')}}"></script>
+@endif
 <script type="text/javascript">
     $(document).ready(function(){
-
         demo.initChartist();
-
-//        $.notify({
-//            icon: 'pe-7s-gift',
-//            message: "Welcome to <b>Light Bootstrap Dashboard</b> - a beautiful freebie for every web developer."
-//
-//        },{
-//            type: 'info',
-//            timer: 4000
-//        });
-
     });
 </script>
 </html>

@@ -9,10 +9,12 @@ use Prettus\Repository\Traits\TransformableTrait;
 class Projeto extends Model implements Transformable
 {
     use TransformableTrait;
-    
+
     protected $table = 'projeto';
 
-    protected $fillable = ['titulo', 'descricao', 'user_id'];
+    protected $fillable = ['titulo', 'descricao', 'user_id', 'url'];
+
+    protected $dates = ['created_at', 'updated_at'];
 
     /**
      * @return array
@@ -25,5 +27,4 @@ class Projeto extends Model implements Transformable
     public function questionarios() {
         return $this->hasMany('App\Entities\Questionario');
     }
-
 }

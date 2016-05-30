@@ -61,7 +61,6 @@ class QuestionariosController extends Controller
             ]);
         }
         return view('questionarios.index', compact('questionarios'));
-        //return $questionarios;
     }
 
 

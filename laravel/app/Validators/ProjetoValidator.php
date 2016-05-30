@@ -9,9 +9,13 @@ class ProjetoValidator extends LaravelValidator {
 
     protected $rules = [
         ValidatorInterface::RULE_CREATE => [
+            'titulo' => 'required|min:5',
+            'url' => 'required',
             'descricao' => 'required|min:5'
         ],
         ValidatorInterface::RULE_UPDATE => [
+            'titulo' => 'required|min:5',
+            'url' => 'required',
             'descricao' => 'required|min:5'
         ],
    ];

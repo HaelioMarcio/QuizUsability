@@ -25,5 +25,7 @@ Route::get('/avaliacao/{token}', 'AvaliacaoController@listAll');
 
 Route::resource('projetos', 'ProjetosController');
 
-Route::get('questionarios/create/{id}', 'QuestionariosController@create');
-Route::resource('questionarios', 'QuestionariosController');
+Route::get('projetos/{id}/questionarios', 'ProjetosController@findQuestionarios');
+Route::get('/questionarios', 'QuestionariosController@index');
+Route::get('projetos/{id}/questionarios/create', 'QuestionariosController@create');
+Route::get('/avaliacoes', 'ProjetosController@findAvaliacoes');

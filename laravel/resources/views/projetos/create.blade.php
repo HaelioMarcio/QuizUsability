@@ -1,15 +1,15 @@
-@extends('layouts.app')
+@extends('layouts.dashboard')
+@section('titulo', 'Projetos')
 
 @section('content')
 
-<div class="container">
     <div class="row">
         <div class="col-md-7">
-            <h1>Criar novo projeto</h1>
+            <h3>Criar novo projeto</h3>
         </div>
     </div>
     <div class="row">
-        <div class="col-md-6 col-md-offset-3">
+        <div class="col-md-6">
             <form action="{{url('/projetos')}}" method="post" >
                 {{csrf_field()}}
                 <div class="form-group">
@@ -17,6 +17,14 @@
                     @if ($errors->has('titulo'))
                         <span class="help-block">
                             <strong>{{ $errors->first('titulo') }}</strong>
+                        </span>
+                    @endif
+                </div>
+                <div class="form-group">
+                    <input type="url" name="url" placeholder="Url" class="form-control">
+                    @if ($errors->has('url'))
+                        <span class="help-block">
+                            <strong>{{ $errors->first('url') }}</strong>
                         </span>
                     @endif
                 </div>
@@ -35,5 +43,4 @@
             </form>
         </div>
     </div>
-</div>
 @endsection

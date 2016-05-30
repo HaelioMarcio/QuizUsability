@@ -98,7 +98,6 @@ class ProjetosController extends Controller
                 return response()->json($response);
             }
 
-//            return redirect()->back()->with('message', $response['message']);
             return redirect()->to('projetos')->with('message', $response['message']);
         } catch (ValidatorException $e) {
             if ($request->wantsJson()) {
@@ -137,7 +136,7 @@ class ProjetosController extends Controller
 
     public function findQuestionarios($id)
     {
-        $projeto = $this->repository->find($id);
+        $projeto = $this->repository->with('questionarios')->find($id);
 
         if (request()->wantsJson()) {
 
@@ -228,5 +227,10 @@ class ProjetosController extends Controller
             ]);
         }
         return redirect()->to('projetos')->with('message', 'Projeto removido.');
+    }
+
+    public function findAvaliacoes()
+    {
+        return view('avaliacoes.index');
     }
 }
