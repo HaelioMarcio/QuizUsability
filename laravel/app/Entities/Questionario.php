@@ -15,17 +15,24 @@ class Questionario extends Model implements Transformable
     
     protected $table = 'questionario';
 
-    protected $fillable = [];
+    protected $fillable = ['descricao', 'objetivo', 'projeto_id', 'token', 'perguntas'];
 
-    protected $dates = ['deleted_at'];
+    protected $dates = ['created_at', 'updated_at', 'deleted_at'];
     
     /**
      * @return array
      */
     public function projeto()
     {
-        return $this->belongsTo('App\App\Entities\Projeto');
+        return $this->belongsTo('App\Entities\Projeto', 'projeto_id');
     }
+
+    public function perguntas()
+    {
+        return $this->belongsToMany('App\Entities\Pergunta', 'questionario_pergunta', 'questionario_id', 'pergunta_id');
+    }
+
+
     
 
 }

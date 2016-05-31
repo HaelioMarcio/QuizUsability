@@ -22,10 +22,12 @@
     <!--     Fonts and icons     -->
     <link href="{{url('dashboard/css/pe-icon-7-stroke.css')}}" rel="stylesheet" />
 
+    <link rel="stylesheet" href="{{url('css/style.css')}}">
+
 </head>
 <body>
 <div class="wrapper">
-    <div class="sidebar" data-color="blue" data-image="dashboard/img/sidebar-5.jpg">
+    <div class="sidebar" data-color="blue" data-image="{{url('dashboard/img/sidebar-5.jpg')}}">
 
         <!--
 
