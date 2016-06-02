@@ -2,8 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\Entities\Avaliacao;
+use App\Entities\Convidado;
+use App\Entities\Resposta;
+use App\Entities\ResultadoAvaliacao;
 use App\Repositories\QuestionarioRepository;
-use Illuminate\Http\Request;
+use App\Http\Requests\AvaliacaoCreateRequest;
 
 use App\Http\Requests;
 use Prettus\Validator\Contracts\ValidatorInterface;
@@ -67,28 +71,6 @@ class QuizController extends Controller
 
 
     /**
-     * Display the specified resource.
-     *
-     * @param  int $id
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        $avaliacao = $this->repository->find($id);
-
-        if (request()->wantsJson()) {
-
-            return response()->json([
-                'data' => $avaliacao,
-            ]);
-        }
-
-        return view('avaliacaos.show', compact('avaliacao'));
-    }
-
-
-    /**
      * Show the form for editing the specified resource.
      *
      * @param  string $token
@@ -97,8 +79,41 @@ class QuizController extends Controller
      */
     public function find($token)
     {
-        $questionario = $this->questionarioRepository->with(['perguntas','projeto'])->findByField('token', $token);
+        $questionarios = $this->questionarioRepository->with(['perguntas','projeto'])->findByField('token', $token);
 
-        return view('quiz.index', compact('questionario'));
+        $respostas = Resposta::all();
+
+        $data = [
+            'questionario' => $questionarios[0],
+            'respostas' => $respostas
+        ];
+
+        return view('quiz.index', compact('data'));
+    }
+
+    public function avaliar(AvaliacaoCreateRequest $request, $id) {
+        
+        $respostas = $request['respostas'];
+
+        $questionario = $this->questionarioRepository->find($id);
+        $convidado = Convidado::find(1);
+
+        $avaliacao = new Avaliacao();
+        $avaliacao->convidado()->associate($convidado);
+        $avaliacao->questionario()->associate($questionario);
+
+        $avaliacao->save();
+
+        foreach ($respostas as $resposta) {
+            $p = $respostas = mbsplit(',',$resposta);
+
+            ResultadoAvaliacao::create([
+                'avaliacao_id' => $avaliacao->id,
+                'pergunta_id' => $p[0],
+                'resposta_id' => $p[1]
+            ]);
+        }
+
+        return redirect()->back()->with('message', "Só sucesso!");
     }
 }

@@ -8,8 +8,13 @@ class Pergunta extends Model
     protected $table = 'pergunta';
     protected $fillable = ['descricao'];
 
-    public function heuristicas()
+    public function heuristica()
 	{
 		return $this->belongsTo('App\Entities\Heuristica');
 	}
+
+    public function usuario()
+    {
+        return $this->belongsTo('App\Entities\Heuristica');
+    }
 }

@@ -57,7 +57,7 @@
                     </a>
                 </li>
                 <li>
-                    <a href="{{url('/questionarios')}}">
+                    <a href="{{url('/questionarios')}}" style="display: none;">
                         <i class="pe-7s-news-paper"></i>
                         <p>Questionários</p>
                     </a>
@@ -145,12 +145,8 @@
 <!--   Core JS Files   -->
 <script src="{{url('vendor/jquery/jquery.min.js')}}"></script>
 <script src="{{url('vendor/bootstrap/js/bootstrap.min.js')}}"></script>
-
 <!--  Checkbox, Radio & Switch Plugins -->
 <script src="{{url('dashboard/js/bootstrap-checkbox-radio-switch.js')}}"></script>
-
-<!--  Charts Plugin -->
-<script src="{{url('dashboard/js/chartist.min.js')}}"></script>
 
 <!--  Notifications Plugin    -->
 <script src="{{url('dashboard/js/bootstrap-notify.js')}}"></script>
@@ -158,14 +154,19 @@
 <!-- Light Bootstrap Table Core javascript and methods for Demo purpose -->
 <script src="{{url('dashboard/js/light-bootstrap-dashboard.js')}}"></script>
 
-<!-- Light Bootstrap Table DEMO methods, don't include it in your project! -->
-<script src="{{url('dashboard/js/demo.js')}}"></script>
+<script src="{{url('vendor/bower_components/highcharts/highcharts.js')}}"></script>
+<script src="{{url('vendor/bower_components/highcharts/highcharts-more.js')}}"></script>
+<script src="{{url('vendor/bower_components/highcharts/modules/exporting.js')}}"></script>
 @if(!Auth::guest())
+    <script src="{{url('js/dashboard.js')}}"></script>
     <script src="{{url('js/laravel.js')}}"></script>
+    <script src="{{url('js/hcharts.js')}}"></script>
 @endif
 <script type="text/javascript">
     $(document).ready(function(){
-        demo.initChartist();
+        @if(Session::has('message'))
+            dashboard.showNotification('{!! session('message') !!}', 'top', 'center');
+        @endif
     });
 </script>
 </html>

@@ -14,6 +14,7 @@ use App\Validators\ProjetoValidator;
  */
 class ProjetoRepositoryEloquent extends BaseRepository implements ProjetoRepository
 {
+
     /**
      * Specify Model class name
      *

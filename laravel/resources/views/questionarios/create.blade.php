@@ -43,9 +43,6 @@
                                 </ul>
                                 <div class="footer">
                                     <hr>
-                                    <div class="stats">
-                                        <input type="checkbox" name="select-all" > Selecionar todas
-                                    </div>
                                 </div>
                             </div>
                         </div>

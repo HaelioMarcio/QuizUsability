@@ -52,8 +52,9 @@
     <!-- JavaScripts -->
     <script src="{{url('vendor/jquery/jquery.min.js')}}"></script>
     <script src="{{url('vendor/Materialize/dist/js/materialize.min.js')}}"></script>
-    <script src="{{url('js/Chart.min.js')}}"></script>
-    <script src="{{url('js/init.js')}}"></script>
+    <script src="{{url('vendor/bower_components/highcharts/highcharts.js')}}"></script>
+    <script src="{{url('vendor/bower_components/highcharts/highcharts-more.js')}}"></script>
+    <script src="{{url('js/init-chart.js')}}"></script>
     @if(!Auth::guest())
         <script src="{{url('js/laravel.js')}}"></script>
     @endif
