@@ -57,3 +57,11 @@ p {
 footer.page-footer {
   margin: 0;
 }
+
+.title-heuristic{
+    /*color: #CCC;*/
+}
+.list-heuristic li{
+    list-style: none;
+    margin-right: 20px;
+}

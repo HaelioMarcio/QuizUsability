@@ -12,7 +12,7 @@ class Projeto extends Model implements Transformable
 
     protected $table = 'projeto';
 
-    protected $fillable = ['titulo', 'descricao', 'user_id', 'url'];
+    protected $fillable = ['titulo', 'descricao', 'url'];
 
     protected $dates = ['created_at', 'updated_at'];
 

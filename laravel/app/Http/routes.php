@@ -21,11 +21,12 @@ Route::get('/home', 'HomeController@index');
 
 Route::get('/heuristicas', 'HeuristicasController@listAll');
 Route::get('/heuristicas/{id}', 'HeuristicasController@show');
-Route::get('/avaliacao/{token}', 'AvaliacaoController@listAll');
 
 Route::resource('projetos', 'ProjetosController');
-
-Route::get('projetos/{id}/questionarios', 'ProjetosController@findQuestionarios');
-Route::get('/questionarios', 'QuestionariosController@index');
-Route::get('projetos/{id}/questionarios/create', 'QuestionariosController@create');
+Route::get('/projetos/{id}/questionarios', 'ProjetosController@findQuestionarios');
+Route::post('/projetos/{id}/questionarios', 'ProjetosController@saveQuestionario');
+Route::delete('/projetos/questionarios/{id}', 'ProjetosController@removeQuestionario');
+Route::get('/projetos/{id}/questionarios/create', 'ProjetosController@createQuestionario');
 Route::get('/avaliacoes', 'ProjetosController@findAvaliacoes');
+Route::get('/quiz/{token}', 'QuizController@find');
+Route::post('/quiz/{id}/avaliacao', 'QuizController@avaliar');

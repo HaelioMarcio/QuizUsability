@@ -18,11 +18,11 @@
             <a href="{{url('projetos/create')}}" class="btn btn-primary">Criar Novo Projeto</a>
         </div>
     </div>
-    <div class="row">
-        @if(Session::has('message'))
-            <div class="alert alert-success"><span class="glyphicon glyphicon-ok"></span><em> {!! session('message') !!}</em></div>
-        @endif
-    </div>
+    {{--<div class="row">--}}
+        {{--@if(Session::has('message'))--}}
+            {{--<div class="alert alert-success"><span class="glyphicon glyphicon-ok"></span><em> {!! session('message') !!}</em></div>--}}
+        {{--@endif--}}
+    {{--</div>--}}
     <div class="row">
         @forelse($projetos as $projeto)
             <div class="col-md-4">

@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Entities\Heuristica;
+use App\Entities\Questionario;
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
@@ -145,7 +147,27 @@ class ProjetosController extends Controller
             ]);
         }
 
-        return view('questionarios.index', compact('questionarios'));
+        return view('questionarios.index', compact('projeto'));
+    }
+
+    public function createQuestionario($id)
+    {
+        $projeto = $this->repository->find($id);
+        $heuristicas = Heuristica::all();
+//        if (request()->wantsJson()) {
+//
+//            return response()->json([
+//                'data' => $projeto,
+//            ]);
+//        }
+        $result = [
+            'projeto' => $projeto,
+            'heuristicas' => $heuristicas
+        ];
+        
+//        dd($result);
+        
+        return view('questionarios.create', compact('result'));
     }
 
 
@@ -232,5 +254,33 @@ class ProjetosController extends Controller
     public function findAvaliacoes()
     {
         return view('avaliacoes.index');
+    }
+
+    public function saveQuestionario(ProjetoCreateRequest $request, $id) {
+        $params = $request->all();
+        $projeto = $this->repository->find($id);
+        $questionario = new Questionario();
+        $questionario->token = str_random(15);
+        $questionario->descricao = $params['descricao'];
+        $questionario->objetivo = $params['objetivo'];
+        $questionario->projeto()->associate($projeto);
+        $questionario->save();
+        $questionario->perguntas()->attach($params['perguntas']);
+
+        return redirect()->to('projetos/'.$projeto->id.'/questionarios')->with('message', 'Questionário criado.');
+    }
+
+    public function removeQuestionario($id)
+    {
+        $deleted = Questionario::destroy($id);
+
+        if (request()->wantsJson()) {
+
+            return response()->json([
+                'message' => 'Questionário removido.',
+                'deleted' => $deleted,
+            ]);
+        }
+        return redirect()->back()->with('message', 'Questionário removido.');
     }
 }
