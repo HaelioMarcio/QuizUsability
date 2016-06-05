@@ -10,7 +10,7 @@
                 <div class="row">
                     <div class="col-md-6">
                         <div class="form-group">
-                            <input type="text" name="descricao" placeholder="Descrição" class="form-control">
+                            <input type="text" name="descricao" placeholder="Descrição" class="form-control" required>
                             @if ($errors->has('descricao'))
                                 <span class="help-block">
                             <strong>{{ $errors->first('descricao') }}</strong>
@@ -18,7 +18,7 @@
                             @endif
                         </div>
                         <div class="form-group">
-                            <textarea class="form-control" name="objetivo" id="" cols="20" rows="5" placeholder="Objetivo"></textarea>
+                            <textarea class="form-control" name="objetivo" id="" cols="20" rows="5" placeholder="Objetivo" required></textarea>
                             @if ($errors->has('objetivo'))
                                 <span class="help-block">
                             <strong>{{ $errors->first('objetivo') }}</strong>
@@ -33,14 +33,24 @@
                     <div class="col-md-6">
                         <div class="card">
                             <div class="header">
-                                <h4 class="title">{{$heuristica->descricao}}</h4>
+                                <h4 class="title">#{{$heuristica->id}} - {{$heuristica->titulo}}
+                                    {{--<a tabindex="0" role="button" data-toggle="tooltip"--}}
+                                       {{--title="{{$heuristica->descricao}}" data-placement="top">--}}
+                                        {{--<i class="glyphicon glyphicon-info-sign"></i>--}}
+                                    {{--</a>--}}
+
+                                    <a tabindex="0" role="button" data-trigger="hover" data-toggle="popover"
+                                       data-content="{{$heuristica->descricao}}" data-placement="top">
+                                        <i class="glyphicon glyphicon-info-sign"></i>
+                                    </a>
+                                </h4>
                             </div>
                             <div class="content">
-                                <ul class="list-heuristic">
-                                    @foreach($heuristica->perguntas as $perguntas)
-                                        <li><input type="checkbox" name="perguntas[]" value="{{$perguntas->id}}"> {{$perguntas->descricao}}</li>
-                                    @endforeach()
-                                </ul>
+                                @foreach($heuristica->perguntas as $pergunta)
+                                    <p><input id="pergunta-{{$pergunta->id}}" type="checkbox" name="perguntas[]" value="{{$pergunta->id}}" />
+                                        <label for="pergunta-{{$pergunta->id}}">{{$pergunta->descricao}}</label>
+                                    </p>
+                                @endforeach()
                                 <div class="footer">
                                     <hr>
                                 </div>

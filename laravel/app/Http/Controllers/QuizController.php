@@ -92,7 +92,7 @@ class QuizController extends Controller
     }
 
     public function avaliar(AvaliacaoCreateRequest $request, $id) {
-        
+
         $respostas = $request['respostas'];
 
         $questionario = $this->questionarioRepository->find($id);

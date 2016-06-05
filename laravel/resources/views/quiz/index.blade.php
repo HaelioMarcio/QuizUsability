@@ -27,8 +27,8 @@
                             <div class="card-action">
                                 @foreach($data['respostas'] as $resposta)
                                     <p>
-                                        <input type="radio" class="with-gap" id="resposta-{{$resposta->id}}" name="respostas[{{$pergunta->id}}]" value="{{$pergunta->id}},{{$resposta->id}}">
-                                        <label for="resposta-{{$resposta->id}}">{{$resposta->descricao}}</label>
+                                        <input type="radio" class="with-gap" id="resposta-{{$pergunta->id}},{{$resposta->id}}" name="resposta-pergunta-{{$pergunta->id}}" value="{{$pergunta->id}},{{$resposta->id}}" />
+                                        <label for="resposta-{{$pergunta->id}},{{$resposta->id}}">{{$resposta->descricao}}</label>
                                     </p>
                                     <div class="divider"></div>
                                @endforeach
