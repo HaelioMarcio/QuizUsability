@@ -36,8 +36,8 @@
                 </div>
                 <div class="content">
                     <div class="ct-chart">
-                        <p><span class="label label-info">Projetos: <span class="badge">{{$result['projetos']}}</span></span></p>
-                        <p><span class="label label-info">Questionários ativos: <span class="badge">{{$result['questionarios']}}</span></span></p>
+                        <p><span class="label label-info">Projetos: <span class="badge">{{count($result['projetos'])}}</span></span></p>
+                        <p><span class="label label-info">Questionários ativos: <span class="badge">{{count($result['questionarios'])}}</span></span></p>
                         <p><span class="label label-info">Avaliações realizadas: <span class="badge">{{count($result['avaliacoes'])}}</span></span></p>
 
                     </div>

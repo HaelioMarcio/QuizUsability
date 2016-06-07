@@ -24,7 +24,7 @@
 
     {{--<link rel="stylesheet" href="{{url('css/style.css')}}">--}}
 
-    <link href='http://fonts.googleapis.com/css?family=Roboto:400,700,300' rel='stylesheet' type='text/css'>
+    {{--<link href='http://fonts.googleapis.com/css?family=Roboto:400,700,300' rel='stylesheet' type='text/css'>--}}
 </head>
 <body>
 <div class="wrapper">

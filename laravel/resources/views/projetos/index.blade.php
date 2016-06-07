@@ -5,15 +5,15 @@
         <div class="col-md-7">
             <h1>Meus Projetos</h1>
         </div>
-        <div class="col-md-3">
-            <br>
-            <form action="">
-                <div class="form-group">
-                    <input class="form-control" type="text" name="search" placeholder="Pesquisar">
-                </div>
-            </form>
-        </div>
-        <div class="col-md-2">
+        {{--<div class="col-md-3">--}}
+            {{--<br>--}}
+            {{--<form action="">--}}
+                {{--<div class="form-group">--}}
+                    {{--<input class="form-control" type="text" name="search" placeholder="Pesquisar">--}}
+                {{--</div>--}}
+            {{--</form>--}}
+        {{--</div>--}}
+        <div class="col-md-2 col-offset-3">
             <br>
             <a href="{{url('projetos/create')}}" class="btn btn-primary">Criar Novo Projeto</a>
         </div>

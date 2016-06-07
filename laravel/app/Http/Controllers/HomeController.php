@@ -49,8 +49,8 @@ class HomeController extends Controller
 //            'questionariosInativos' => $questionariosInativos,
             'avaliacoes' => $avaliacoes
         ];
-        dd($result);
+//        dd($result);
 
-        return view('dashboard.index', compact('result'));
+        return view('dashboard.newindex', compact('result'));
     }
 }
