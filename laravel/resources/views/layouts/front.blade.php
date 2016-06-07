@@ -55,8 +55,6 @@
     <script src="{{url('vendor/bower_components/highcharts/highcharts.js')}}"></script>
     <script src="{{url('vendor/bower_components/highcharts/highcharts-more.js')}}"></script>
     <script src="{{url('js/init-chart.js')}}"></script>
-    @if(!Auth::guest())
-        <script src="{{url('js/laravel.js')}}"></script>
-    @endif
+
 </body>
 </html>

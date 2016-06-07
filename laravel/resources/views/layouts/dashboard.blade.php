@@ -17,13 +17,14 @@
     <!--  Light Bootstrap Table core CSS    -->
     <link href="{{url('dashboard/css/light-bootstrap-dashboard.css')}}" rel="stylesheet"/>
     <!--  CSS for Demo Purpose, don't include it in your project     -->
-    <link href="{{url('dashboard/css/demo.css')}}" rel="stylesheet" />
+    {{--<link href="{{url('dashboard/css/demo.css')}}" rel="stylesheet" />--}}
 
     <!--     Fonts and icons     -->
     <link href="{{url('dashboard/css/pe-icon-7-stroke.css')}}" rel="stylesheet" />
 
-    <link rel="stylesheet" href="{{url('css/style.css')}}">
+    {{--<link rel="stylesheet" href="{{url('css/style.css')}}">--}}
 
+    {{--<link href='http://fonts.googleapis.com/css?family=Roboto:400,700,300' rel='stylesheet' type='text/css'>--}}
 </head>
 <body>
 <div class="wrapper">
@@ -164,9 +165,12 @@
 @endif
 <script type="text/javascript">
     $(document).ready(function(){
+        $('[data-toggle="tooltip"]').tooltip();
+        $('[data-toggle="popover"]').popover();
         @if(Session::has('message'))
             dashboard.showNotification('{!! session('message') !!}', 'top', 'center');
         @endif
     });
 </script>
+@yield('custom-scripts')
 </html>

@@ -38,5 +38,10 @@ class AppServiceProvider extends ServiceProvider
             'App\Repositories\QuestionarioRepositoryEloquent'
         );
 
+        $this->app->bind(
+            'App\Repositories\AvaliacaoRepository',
+            'App\Repositories\AvaliacaoRepositoryEloquent'
+        );
+
     }
 }

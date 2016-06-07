@@ -7,6 +7,7 @@ use App\Entities\Projeto;
 use App\Entities\Questionario;
 use App\Entities\ResultadoAvaliacao;
 use App\Http\Requests;
+use App\Repositories\AvaliacaoRepository;
 use App\Repositories\ProjetoRepository;
 use App\Repositories\QuestionarioRepository;
 use Illuminate\Support\Facades\Auth;
@@ -14,14 +15,17 @@ use Illuminate\Support\Facades\Auth;
 class HomeController extends Controller
 {
     
+    protected $avaliacaoRepository;
+    
     /**
      * Create a new controller instance.
      *
      * @return void
      */
-    public function __construct()
+    public function __construct(AvaliacaoRepository $avaliacaoRepository)
     {
         $this->middleware('auth');
+        $this->avaliacaoRepository = $avaliacaoRepository;
     }
 
     /**
@@ -32,24 +36,21 @@ class HomeController extends Controller
     public function index()
     {
 
-        $projetos =  Projeto::where('user_id', Auth::user()->id)->get();
-        $questionarios = Questionario::whereIn('projeto_id', array_pluck($projetos, 'id'));
-        $questionariosInativos = Questionario::onlyTrashed()->whereIn('projeto_id', array_pluck($projetos, 'id'))->get();
-        $avaliacoes = Avaliacao::whereIn('questionario_id', array_pluck($questionarios, 'id'));
+        $projetos =  Projeto::with('questionarios')->where('user_id', Auth::user()->id)->get();
+        $questionarios = Questionario::with('perguntas')->whereIn('projeto_id', array_pluck($projetos, 'id'))->get();
+//        $questionariosInativos = Questionario::onlyTrashed()->whereIn('projeto_id', array_pluck($projetos, 'id'))->get();
 
-        dd($avaliacoes);
-        $resultadosAvaliacao = ResultadoAvaliacao::whereIn('avaliacao_id', array_pluck($avaliacoes, 'id'))->get();
+        $avaliacoes = Avaliacao::with('resultadoAvaliacao')->whereIn('questionario_id', array_pluck($questionarios, 'id'))->get();
 
-        dd($resultadosAvaliacao);
 
         $result = [
-            'projetos' => count($projetos),
-            'questionarios' => count($questionarios),
-            'questionariosInativos' => count($questionariosInativos),
-            'avaliacoes' => count($avaliacoes)
+            'projetos' => $projetos,
+            'questionarios' => $questionarios,
+//            'questionariosInativos' => $questionariosInativos,
+            'avaliacoes' => $avaliacoes
         ];
-        
-        
-        return view('dashboard.index', compact('result'));
+//        dd($result);
+
+        return view('dashboard.newindex', compact('result'));
     }
 }

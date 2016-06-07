@@ -7,7 +7,7 @@
 
           chart: {
               polar: true,
-              type: 'spline'
+              type: 'line'
           },
 
           title: {
@@ -35,7 +35,7 @@
           },
 
           yAxis: {
-              gridLineInterpolation: 'circle',
+              gridLineInterpolation: 'polygon',
               lineWidth: 0,
               min: 0
           },

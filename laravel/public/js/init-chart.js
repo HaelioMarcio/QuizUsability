@@ -11,7 +11,7 @@
 
           chart: {
               polar: true,
-              type: 'spline'
+              type: 'line'
           },
 
           title: {
@@ -39,7 +39,7 @@
           },
 
           yAxis: {
-              gridLineInterpolation: 'circle',
+              gridLineInterpolation: 'polygon',
               lineWidth: 0,
               min: 0
           },
@@ -62,7 +62,7 @@
               pointPlacement: 'on'
           }, {
               name: 'Site B',
-              data: [28, 48, 40, 19, 96, randomnb(), randomnb(), randomnb(), 100, 80],
+              data: [28, 48, 40, 19, randomnb(), randomnb(), 100, 80],
               pointPlacement: 'on'
           }]
 

@@ -25,4 +25,9 @@ class Avaliacao extends Model implements Transformable
     {
         return $this->belongsTo('App\Entities\Convidado');
     }
+
+    public function resultadoAvaliacao()
+    {
+        return $this->hasMany('App\Entities\ResultadoAvaliacao');
+    }
 }

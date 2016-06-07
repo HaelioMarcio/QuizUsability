@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Entities\Avaliacao;
 use App\Entities\Convidado;
+use App\Entities\Questionario;
 use App\Entities\Resposta;
 use App\Entities\ResultadoAvaliacao;
 use App\Repositories\QuestionarioRepository;
@@ -92,11 +93,20 @@ class QuizController extends Controller
     }
 
     public function avaliar(AvaliacaoCreateRequest $request, $id) {
-        
+
         $respostas = $request['respostas'];
 
         $questionario = $this->questionarioRepository->find($id);
-        $convidado = Convidado::find(1);
+        $convidado = Convidado::firstOrCreate(['email' => $request['email'], 'nome' => $request['nome']]);//->first();
+
+//        if(!$convidado) {
+//            $convidado = new Convidado(['nome' => $request['nome'], 'email' => $request['email']]);
+//            $convidado->save();
+//        }
+
+        if($this->avaliacaoJaRealizada($questionario, $convidado)) {
+            return redirect()->back()->with('message', "Você já respondeu este questionário!");
+        }
 
         $avaliacao = new Avaliacao();
         $avaliacao->convidado()->associate($convidado);
@@ -115,5 +125,11 @@ class QuizController extends Controller
         }
 
         return redirect()->back()->with('message', "Só sucesso!");
+    }
+
+    private function avaliacaoJaRealizada(Questionario $questionario, Convidado $convidado) {
+        return Avaliacao::where('questionario_id', $questionario->id)->
+                                where('convidado_id', $convidado->id)->
+                                count() > 0;
     }
 }
