@@ -5,4 +5,5 @@
 <link href="{{url('dashboard/main/css/style.css')}}" rel="stylesheet">
 <link href="{{url('dashboard/main/css/pages/dashboard.css')}}" rel="stylesheet">
 <link href="{{url('css/footer.css')}}" rel="stylesheet">
+@yield('custom-styles')
 
