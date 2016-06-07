@@ -38,12 +38,12 @@
                     <div class="ct-chart">
                         <p><span class="label label-info">Projetos: <span class="badge">{{$result['projetos']}}</span></span></p>
                         <p><span class="label label-info">Questionários ativos: <span class="badge">{{$result['questionarios']}}</span></span></p>
-                        <p><span class="label label-info">Avaliações realizadas: <span class="badge">{{$result['avaliacoes']}}</span></span></p>
+                        <p><span class="label label-info">Avaliações realizadas: <span class="badge">{{count($result['avaliacoes'])}}</span></span></p>
 
                     </div>
                     <div class="footer">
                         <div class="legend">
-                            <p><span class="label label-default">Questionários inativos: <span class="badge">{{$result['questionariosInativos']}}</span></span>
+                            {{--<p><span class="label label-default">Questionários inativos: <span class="badge">{{$result['questionariosInativos']}}</span></span>--}}
                         </div>
                         <hr>
                         <div class="stats">

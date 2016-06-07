@@ -37,28 +37,20 @@ class HomeController extends Controller
     {
 
         $projetos =  Projeto::with('questionarios')->where('user_id', Auth::user()->id)->get();
-        $questionarios = Questionario::with('perguntas')->whereIn('projeto_id', array_pluck($projetos, 'id'))->first();
-        $questionariosInativos = Questionario::onlyTrashed()->whereIn('projeto_id', array_pluck($projetos, 'id'))->first();
+        $questionarios = Questionario::with('perguntas')->whereIn('projeto_id', array_pluck($projetos, 'id'))->get();
+//        $questionariosInativos = Questionario::onlyTrashed()->whereIn('projeto_id', array_pluck($projetos, 'id'))->get();
+
         $avaliacoes = Avaliacao::with('resultadoAvaliacao')->whereIn('questionario_id', array_pluck($questionarios, 'id'))->get();
 
-//        $result = [
-//            'projetos' => count($projetos),
-//            'questionarios' => count($questionarios),
-//            'questionariosInativos' => count($questionariosInativos),
-//            'avaliacoes' => count($avaliacoes)
-//        ];
 
         $result = [
             'projetos' => $projetos,
             'questionarios' => $questionarios,
-            'questionariosInativos' => $questionariosInativos,
+//            'questionariosInativos' => $questionariosInativos,
             'avaliacoes' => $avaliacoes
         ];
-//        foreach ($avaliacoes as $avaliacao) {
-//            dump($avaliacao->resposta());
-//        }
         dd($result);
-        
+
         return view('dashboard.index', compact('result'));
     }
 }

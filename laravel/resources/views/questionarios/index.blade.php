@@ -32,11 +32,11 @@
                                     data-whatever="{{$questionario->descricao}}"
                                     data-token="{{$questionario->token}}">Enviar para avaliação</button>
                             </p>
-							{{--<p>--}}
-								{{--<a  href="/quiz/{{$questionario->token}}" target="_blank">--}}
-									{{--Link para avaliação--}}
-								{{--</a>--}}
-							{{--</p>--}}
+							<p>
+								<a  href="/quiz/{{$questionario->token}}" target="_blank">
+									Link para avaliação
+								</a>
+							</p>
 							<p class="text-center">
 								<a  href="javascript:;" class="btn btn-primary" type="button">
 									Avaliações <span class="badge">10</span>
