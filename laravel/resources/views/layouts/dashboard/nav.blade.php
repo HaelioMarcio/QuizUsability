@@ -44,7 +44,7 @@
         <div class="container">
             <ul class="mainnav">
                 <li class="active"><a href="{{url('/home')}}"><i class="icon-dashboard"></i><span>Dashboard</span> </a> </li>
-                <li><a href="{{url('/projetos')}}"><i class="fa fa-sitemap"></i><span>Projetos</span> </a> </li>
+                <li><a href="{{url('/projetos')}}"><i class="icon-list-alt"></i><span>Projetos</span> </a> </li>
                 <li><a href="{{url('/sobre')}}"><i class="fa fa-sitemap"></i><span>App Tour</span> </a></li>
                 <li><a href="charts.html"><i class="icon-bar-chart"></i><span>Charts</span> </a> </li>
                 <li><a href="shortcodes.html"><i class="icon-code"></i><span>Shortcodes</span> </a> </li>

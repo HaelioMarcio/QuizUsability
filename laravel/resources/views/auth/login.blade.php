@@ -21,7 +21,7 @@
                                 @endif
                             </div>
                         </div>
-                        
+
                         <div class="form-group{{ $errors->has('password') ? ' has-error' : '' }}">
                             <div class="col-md-6 col-md-offset-3">
                                 <label class="control-label">Senha</label>
@@ -54,9 +54,9 @@
                                 <a href="/register">Cadastrar</a>
                             </div>
                         </div>
-                        
-                        
-                        
+
+
+
                     </form>
                 </div>
             </div>

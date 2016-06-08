@@ -38,7 +38,6 @@ class HomeController extends Controller
 
         $projetos =  Projeto::with('questionarios')->where('user_id', Auth::user()->id)->get();
         $questionarios = Questionario::with('perguntas')->whereIn('projeto_id', array_pluck($projetos, 'id'))->get();
-//        $questionariosInativos = Questionario::onlyTrashed()->whereIn('projeto_id', array_pluck($projetos, 'id'))->get();
 
         $avaliacoes = Avaliacao::with('resultadoAvaliacao')->whereIn('questionario_id', array_pluck($questionarios, 'id'))->get();
 
@@ -46,11 +45,14 @@ class HomeController extends Controller
         $result = [
             'projetos' => $projetos,
             'questionarios' => $questionarios,
-//            'questionariosInativos' => $questionariosInativos,
             'avaliacoes' => $avaliacoes
         ];
-//        dd($result);
 
-        return view('dashboard.newindex', compact('result'));
+        return view('dashboard.index', compact('result'));
+    }
+
+    public function compartilharQuestionario(Requests\Request $request, $token)
+    {
+        dd($request['avaliadores']);
     }
 }
