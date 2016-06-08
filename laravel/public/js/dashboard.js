@@ -6,7 +6,7 @@ dashboard = {
         color = Math.floor((Math.random() * 4) + 1);
 
         $.notify({
-            icon: "pe-7s-bell",
+            icon: "icon-bell",
             message: msg
 
         },{
