@@ -57,4 +57,5 @@
     <script src="{{url('js/init-chart.js')}}"></script>
 
 </body>
+@yield('custom-scripts')
 </html>

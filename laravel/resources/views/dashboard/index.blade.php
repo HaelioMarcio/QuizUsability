@@ -9,7 +9,7 @@
                     <p class="category">Nível de usabilidade</p>
                 </div>
                 <div class="content">
-                    <div id="container-chart" style="min-width: 500px;"></div>
+                    <canvas id="container-chart" style="min-width: 500px;"></canvas>
 
                     <div class="footer">
                         <div class="legend">
@@ -36,9 +36,9 @@
                 </div>
                 <div class="content">
                     <div class="ct-chart">
-                        <p><span class="label label-info">Projetos: <span class="badge">{{count($result['projetos'])}}</span></span></p>
-                        <p><span class="label label-info">Questionários ativos: <span class="badge">{{count($result['questionarios'])}}</span></span></p>
-                        <p><span class="label label-info">Avaliações realizadas: <span class="badge">{{count($result['avaliacoes'])}}</span></span></p>
+                        <p><span class="label label-info">Projetos: <span class="badge">{{$result['projetos']}}</span></span></p>
+                        <p><span class="label label-info">Questionários ativos: <span class="badge">{{$result['questionarios']}}</span></span></p>
+                        <p><span class="label label-info">Avaliações realizadas: <span class="badge">{{$result['avaliacoes']}}</span></span></p>
 
                     </div>
                     <div class="footer">
@@ -78,4 +78,32 @@
             </div>
         </div>
     </div>
+@endsection
+@section('custom-scripts')
+    <script>
+
+        $(document).ready(function() {
+
+            $.getJSON("/resultados", function(result){
+                console.log(result.data);
+
+//                var ctx = document.getElementById("canvasRadar");
+                var ctx = document.getElementById("container-chart");
+
+                var canvasRadar = new Chart(ctx, {
+                    type: 'radar',
+                    data: result.data,
+                    options: {
+                        responsive: true,
+                        legend: {
+                            display: true,
+                            labels: {
+                                fontColor: 'rgb(255, 99, 132)'
+                            }
+                        }
+                    }
+                });
+            });
+        });
+    </script>
 @endsection

@@ -150,13 +150,11 @@
 <!-- Light Bootstrap Table Core javascript and methods for Demo purpose -->
 <script src="{{url('dashboard/js/light-bootstrap-dashboard.js')}}"></script>
 
-<script src="{{url('vendor/bower_components/highcharts/highcharts.js')}}"></script>
-<script src="{{url('vendor/bower_components/highcharts/highcharts-more.js')}}"></script>
-<script src="{{url('vendor/bower_components/highcharts/modules/exporting.js')}}"></script>
 @if(!Auth::guest())
     <script src="{{url('js/dashboard.js')}}"></script>
     <script src="{{url('js/laravel.js')}}"></script>
-    <script src="{{url('js/hcharts.js')}}"></script>
+    {{--<script src="{{url('js/Chart.min.js')}}"></script>--}}
+    <script src="{{url('main/js/chartjs/chart.min.js')}}"></script>
 @endif
 <script type="text/javascript">
     $(document).ready(function(){

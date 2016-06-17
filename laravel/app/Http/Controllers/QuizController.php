@@ -99,10 +99,6 @@ class QuizController extends Controller
         $questionario = $this->questionarioRepository->find($id);
         $convidado = Convidado::firstOrCreate(['email' => $request['email'], 'nome' => $request['nome']]);//->first();
 
-//        if(!$convidado) {
-//            $convidado = new Convidado(['nome' => $request['nome'], 'email' => $request['email']]);
-//            $convidado->save();
-//        }
 
         if($this->avaliacaoJaRealizada($questionario, $convidado)) {
             return redirect()->back()->with('message', "Você já respondeu este questionário!");
@@ -124,7 +120,7 @@ class QuizController extends Controller
             ]);
         }
 
-        return redirect()->back()->with('message', "Só sucesso!");
+        return redirect()->back()->with('message', "Avaliação realizada com sucesso.");
     }
 
     private function avaliacaoJaRealizada(Questionario $questionario, Convidado $convidado) {

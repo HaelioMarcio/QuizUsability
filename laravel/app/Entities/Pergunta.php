@@ -17,4 +17,9 @@ class Pergunta extends Model
     {
         return $this->belongsTo('App\Entities\Heuristica');
     }
+
+    public function questionarios()
+    {
+        return $this->belongsToMany('App\Entities\Questionario', 'questionario_pergunta', 'pergunta_id', 'questionario_id');
+    }
 }

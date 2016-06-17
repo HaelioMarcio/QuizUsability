@@ -30,5 +30,6 @@ Route::get('/projetos/{id}/questionarios/create', 'ProjetosController@createQues
 Route::get('/avaliacoes', 'ProjetosController@findAvaliacoes');
 Route::get('/quiz/{token}', 'QuizController@find');
 Route::post('/quiz/{id}/avaliacao', 'QuizController@avaliar');
-Route::get('/sobre', 'HomeController@index');
+Route::get('/sobre', 'HomeController@sobre');
 Route::post('/questionarios/{token}', 'HomeController@compartilharQuestionario');
+Route::get('/resultados', 'HomeController@obterResultados');
