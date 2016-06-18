@@ -267,7 +267,7 @@ class ProjetosController extends Controller
         $questionario->save();
         $questionario->perguntas()->attach($params['perguntas']);
 
-        return redirect()->to('projetos/'.$projeto->id.'/questionarios')->with('message', 'Questionário criado.');
+        return redirect()->to('projetos')->with('message', 'Questionário criado.');
     }
 
     public function removeQuestionario($id)

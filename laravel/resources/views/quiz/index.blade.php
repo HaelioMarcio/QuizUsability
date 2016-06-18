@@ -1,11 +1,6 @@
 @extends('layouts.front')
 @section('content')
 	<div class="container">
-            <div class="row">
-                @if(Session::has('message'))
-                    <div class="alert alert-success"><span class="glyphicon glyphicon-ok"></span><em> {!! session('message') !!}</em></div>
-                @endif
-            </div>
             <form action="{{url('/quiz/'.$data['questionario']->id.'/avaliacao')}}" method="post">
                 {{csrf_field()}}
                 <div class="row">
@@ -37,7 +32,7 @@
                 </div>
                 <div class="row">
                     @foreach($data['questionario']->perguntas as $pergunta)
-                    <div class="col s12 m6">
+                    <div class="col s12">
                         <div class="card">
                             <div class="card-content">
                                 <blockquote>{{$pergunta->descricao}}</blockquote>
@@ -67,3 +62,12 @@
         </div>
     </div>
 @endsection()
+@section('custom-scripts')
+    <script type="text/javascript">
+        $(document).ready(function(){
+            @if(Session::has('message'))
+                Materialize.toast('{!! session('message') !!}', 4000);
+            @endif
+        });
+    </script>
+@endsection
