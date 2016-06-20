@@ -1,4 +1,4 @@
-<script src="{{url('dashboard/main/js/bootstrap-notify.js')}}"></script>
+<script src="{{url('js/bootstrap-notify.js')}}"></script>
 <script src="{{url('js/dashboard.js')}}"></script>
 <script src="{{url('js/laravel.js')}}"></script>
 
@@ -25,6 +25,7 @@
 <script type="text/javascript" src="{{url('main/js/flot/jquery.flot.stack.js')}}"></script>
 <script type="text/javascript" src="{{url('main/js/flot/curvedLines.js')}}"></script>
 <script type="text/javascript" src="{{url('main/js/flot/jquery.flot.resize.js')}}"></script>
+
 
 <script type="text/javascript">
     $(document).ready(function(){

@@ -120,7 +120,7 @@ class QuizController extends Controller
             ]);
         }
 
-        return redirect()->back()->with('message', "Avaliação realizada com sucesso.");
+        return redirect()->back()->with('message', "Obrigado ". $convidado->nome .". Avaliação realizada com sucesso.");
     }
 
     private function avaliacaoJaRealizada(Questionario $questionario, Convidado $convidado) {

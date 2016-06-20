@@ -6,26 +6,47 @@
         <div class="section no-pad-bot">
             <div class="container">
                 <br><br>
-                <h1 class="header center white-text text-lighten-2">Crie seu Questionário</h1>
+                <h1 class="header center white-text text-lighten-2">
+                	<img src="{{url('offline/logo_white.png')}}" width="450px" class="responsive-img">      
+                </h1>
+                <br><br><br>
                 <div class="row center">
                     <h5 class="header col s12 light white-text">Faça testes de Usabilidade com quem você quiser.</h5>
                 </div>
                 <div class="row center">
-                    <a href="/login" id="download-button" class="btn-large waves-effect waves-light teal lighten-1">Comece agora!</a>
+                   
+                    <a href="/home" id="download-button" class="btn-large waves-effect waves-light blue darken-3">Comece agora!</a>
                 </div>
                 <br><br>
 
             </div>
         </div>
-        <div class="parallax"><img src="{{url('images/background1.jpg')}}" alt="Unsplashed background img 1"></div>
+        <div class="parallax"><img src="{{url('offline/background1.jpg')}}" alt="Unsplashed background img 1"></div>
     </div>
 
     <div class="container">
         <div class="section">
             <h4 class="center">O que é QuizAbility?</h4>
             <p class="center">
-                Os princípios, problemas e desafios da implementação do conceito de usabilidade, por entidades que não visam à importância desse termo no âmbito empresarial. Também iremos falar sobre o “QuizAbility Framework”, uma ferramenta que criamos para proporcionar uma diferente visão dos problemas ocorridos hoje em dia referente a este tema. Nesta ferramenta, podemos facilmente gerar questionários que se encaixe em distintos projetos, de forma rápida, simples e em alguns cliques o questionário estará montado. Respondendo o questionário o QuizAbility Framework irá apresentar quais pontos, dentre as heurísticas analisadas, o site ou sistema avaliado está atendendo ou falhando.
+Atualmente os testes de usabilidade em projetos de software não são realizados
 
+adequadamente, pelo fato de empresas não pensarem qual será a dificuldade do usuário final
+
+quando estiver utilizando o software e por não terem verbas e tempo para realização desses
+
+testes. Muitas empresas não enxergam a importância de um software/portal livres de erros e
+
+intuitivos para seus negócios. Nossa proposta tem como objetivo elaborar uma abordagem
+
+que facilita testes de usabilidade, ajudando e contrubuindo para o mercado de
+
+desenvolvimento que trabalham com sites, portais e sistemas web. Está ferramenta foi desenvolvida com base nas 10 heurísticas de Nielsen para avaliarem de forma intuitiva, o nível
+
+de maturidade em usabilidade que os sites, portais ou sistemas web possuem. Neste trabalho,
+
+iremos abordar os princípios de usabilidade, os problemas e desafios de entidades que não
+
+visam a importância desse termo e mostrar a ferramenta QuizAbility.
             </p>
 
         </div>
@@ -82,7 +103,7 @@
         <div class="parallax"><img src="{{url('images/background2.jpg')}}" alt="Unsplashed background img 2"></div>
     </div>
 
-    <footer class="page-footer teal">
+    <footer class="page-footer black">
         <div class="container">
             <div id="equipe" class="section scrollspy"></div>
             <div class="row">
