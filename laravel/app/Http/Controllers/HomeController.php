@@ -2,11 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Entities\Avaliacao;
 use App\Entities\Heuristica;
-use App\Entities\Projeto;
-use App\Entities\Questionario;
-use App\Entities\ResultadoAvaliacao;
 use App\Repositories\ProjetoRepository;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -59,7 +55,11 @@ class HomeController extends Controller
     public function compartilharQuestionario(Request $request)
     {
         if ($request->wantsJson()) {
-            return response()->json($request, 200, [], JSON_NUMERIC_CHECK);
+            $response = [
+                'data' => $request->all(),
+                'message' => $request->get('avaliadores'),
+            ];
+            return response()->json($response, 200, [], JSON_NUMERIC_CHECK);
         }
     }
 
@@ -83,8 +83,6 @@ class HomeController extends Controller
         $datasets = collect([]);
         $labels = collect(array_pluck($data, 'heuristica'))->unique()->flatten();
 
-
-
         foreach ($collection as $key => $value) {
             $c1 = mt_rand(1,255);
             $c2 = mt_rand(1,255);
@@ -94,7 +92,7 @@ class HomeController extends Controller
                 'label' => $key,
                 'fill' => true,
                 'lineTension' => 0.1,
-                'backgroundColor' => "rgba(".$c1.",".$c2.",".$c3.",0.2)",
+                'backgroundColor' => "rgba(".$c1.",".$c2.",".$c3.",0.1)",
                 'borderColor' => "rgba(".$c1.",".$c2.",".$c3.",1)",
                 'pointBackgroundColor' => "rgba(".$c1.",".$c2.",".$c3.",1)",
                 'pointBorderColor' => "#fff",
@@ -105,13 +103,11 @@ class HomeController extends Controller
             $datasets->push($dataset);
         }
 
-        $data = [
-            'labels' => $labels,
-            'datasets' => $datasets
-        ];
-
         $response = [
-            'data' => $data
+            'data' => [
+                'labels' => $labels,
+                'datasets' => $datasets
+            ]
         ];
 
         if ($request->wantsJson()) {
@@ -120,9 +116,8 @@ class HomeController extends Controller
     }
 
     public function sobre() {
-
         $heuristicas = Heuristica::all();
-        
         return view('heuristicas.index', compact('heuristicas'));
     }
+
 }

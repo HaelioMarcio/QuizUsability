@@ -44,9 +44,9 @@
                             <h3 class="description">{{ $projeto->descricao }}</h3>
 
                             <div style="text-align: center; margin-bottom: 17px">
-                            <span class="chart" data-percent="86">
+                            {{--<span class="chart" data-percent="86">--}}
                                 <span class="percent"></span>
-                            </span>
+                            {{--</span>--}}
                             </div>
 
                             <h3 class="name_title " style="text-align: center;">Usabilidade</h3>
@@ -86,7 +86,7 @@
                                         <div id="collapse{{$questionario->id}}" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo">
                                             <div class="panel-body">
                                                 <p>
-                                                    <button type="button" class="btn" data-toggle="modal" data-target="#modal-share" data-whatever="{{ $questionario->token }}">Compartilhar</button>
+                                                    <button type="button" class="btn" data-toggle="modal" data-target="#modal-share" data-token="{{ $questionario->token }}">Compartilhar</button>
                                                 </p>
                                                 <p >Link para avaliação: <a href="/quiz/{{ $questionario->token }}" target="_blank">{{url('quiz')}}/{{ $questionario->token }}</a>
                                                 </p>
@@ -113,28 +113,27 @@
     <div class="modal fade" id="modal-share" tabindex="-1" role="dialog" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
-                <form action="{{url('/send/quiz')}}" method="POST">
-                    {{csrf_field()}}
+                <form id="form-modal" action="{{url('/send/quiz')}}" method="POST" novalidate>
                     <div class="modal-header">
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
                         <h4 class="modal-title" id="myModalLabel2">Enviar para avaliação</h4>
                     </div>
                     <div class="modal-body">
-                        <h4>Questionário | <span class="quiz-token"></span></h4>
-                        <input id="tags-input" type="email" data-role="tagsinput" placeholder="Adicionar email" name="avaliadores"/>
+                        <h4>Questionário</h4>
+                        <input id="tags-input" type="text" data-role="tagsinput" placeholder="Adicionar email" name="avaliadores"/>
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
                         <button id="modal-submit" type="submit" class="btn btn-primary" data-dismiss="modal">Enviar</button>
+                        <input type="hidden" id="token" name="token" value="0">
                     </div>
                 </form>
             </div>
         </div>
     </div>
-
+    <meta name="_token" content="{!! csrf_token() !!}" />
 @endsection
 @section('more-scripts')
-    <script src="{{url('main/js/easypie/jquery.easypiechart.min.js')}}"></script>
     <script src="{{url('main/js/tagsinput/bootstrap-tagsinput.min.js')}}"></script>
 
     <script>
@@ -144,50 +143,58 @@
         }
 
         $(function() {
-            $('.chart').easyPieChart({
-                easing: 'easeOutElastic',
-                delay: 3000,
-                barColor: '#26B99A',
-                trackColor: '#fff',
-                scaleColor: false,
-                lineWidth: 20,
-                trackWidth: 16,
-                lineCap: 'butt',
-                onStep: function(from, to, percent) {
-                    $(this.el).find('.percent').text(Math.round(percent));
-                }
-            });
-            var chart = window.chart = $('.chart').data('easyPieChart');
-            $('.js_update').on('click', function() {
-                chart.update(Math.random() * 200 - 100);
-            });
+            var avaliadores = $('#tags-input');
 
+            avaliadores.on('itemAdded', function(event) {
+                var tag = event.item;
+                if (!event.options || !event.options.preventPost) {
+                    if (!isEmail(tag)) {
+                        avaliadores.tagsinput('remove', tag, {preventPost: true});
+                    }
+                }
+                console.log(avaliadores.val());
+            });
 
             // MODAL
             $('#modal-share').on('show.bs.modal', function (event) {
-                var button = $(event.relatedTarget) // Button that triggered the modal
-                var recipient = button.data('whatever') // Extract info from data-* attributes
-                // If necessary, you could initiate an AJAX request here (and then do the updating in a callback).
-                // Update the modal's content. We'll use jQuery here, but you could use a data binding library or other methods instead.
+                var button = $(event.relatedTarget)
                 var modal = $(this)
-                modal.find('.quiz-token').text(recipient);
+                modal.find('#token').val(button.data('token') );
             });
 
-            $('#tags-input').on('beforeItemAdd', function(event) {
-                var tag = event.item;
-                // Do some processing here
-
-                if (!event.options || !event.options.preventPost) {
-                    var email = isEmail(tag);
-                    if (!email) {
-                        $('#tags-input').tagsinput('remove', tag);
+            $("#modal-submit").click(function (e) {
+                $.ajaxSetup({
+                    headers: {
+                        'X-CSRF-TOKEN': $('meta[name="_token"]').attr('content')
                     }
-                }
-            });
+                })
 
-            $("#modal-submit").click(function() {
-                $.post( "/send/quiz", function( data ) {
-                    console.log(data);
+                e.preventDefault();
+
+                var form = {
+                    avaliadores: $('#tags-input').val(),
+                    token: $('#token').val(),
+                }
+
+                $.ajax({
+                    type: "POST",
+                    url: '/send/quiz',
+                    data: form,
+                    dataType: 'json',
+                    success: function (data) {
+                        console.log(data);
+
+                        if(data.message) {
+                            dashboard.showNotification(data.message, 'top', 'center');
+                        }
+
+                        $('#form-modal').trigger("reset");
+                        $('#modal-share').modal('hide')
+                    },
+                    error: function (data) {
+                        dashboard.showNotification(data.message, 'top', 'center');
+                        console.log('Error:', data);
+                    }
                 });
             });
         });
