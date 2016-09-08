@@ -1,5 +1,1 @@
-Olá {{$convite['convidado']->nome}}!
-
-Você foi indicado por {{$convite['solicitante']->nome}} para avaliar o site {{$convite['url']}}.
-
-Clique aqui para acessar o questionário de avaliação: <a href="{{ $link = url('/quiz', $token)}}"> {{ $link }} </a>
+Click here to reset your password:<a href="{{url('password/reset')}}"> Aqui </a>

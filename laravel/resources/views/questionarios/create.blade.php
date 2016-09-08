@@ -74,10 +74,12 @@
 
                                 <div style="margin-left: 30px;">
                                     @foreach($heuristica->perguntas as $pergunta)
+
                                         <label for="pergunta-{{$pergunta->id}}">
                                             <input id="pergunta-{{$pergunta->id}}" type="checkbox" name="perguntas[]" value="{{$pergunta->id}}" />
                                             {{$pergunta->descricao}}
                                         </label>
+
                                         <hr>
                                     @endforeach()
                                 </div>
@@ -103,7 +105,6 @@
 
 
 @endsection
-
 
 
 

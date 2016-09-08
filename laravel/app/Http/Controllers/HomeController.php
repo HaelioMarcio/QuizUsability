@@ -2,13 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use App\Entities\Avaliacao;
 use App\Entities\Heuristica;
-use App\Entities\Projeto;
-use App\Entities\Questionario;
-use App\Entities\ResultadoAvaliacao;
 use App\Repositories\ProjetoRepository;
-use App\Repositories\QuestionarioRepository;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -46,11 +41,10 @@ class HomeController extends Controller
 
         $questionariosProjeto = \DB::select('select count(*) as questionarios from questionario '.
                                             'inner join projeto on questionario.projeto_id = projeto.id '.
-                                            'where projeto.user_id = ?', [$userId]);
-
+                                            'where projeto.user_id = ?', [$userId]);  
         $result = [
             'projetos' => $projetos,
-            'questionarios' => count($questionariosProjeto),
+            'questionarios' => $questionariosProjeto[0]->questionarios,
             'avaliacoes' => $avaliacoesProjeto[0]->total,
             'ultimaAvaliacao' => $avaliacoesProjeto[0]->ultimaAvaliacao
         ];
@@ -58,9 +52,15 @@ class HomeController extends Controller
        return view('home', compact('result'));
     }
 
-    public function compartilharQuestionario(Request $request, $token)
+    public function compartilharQuestionario(Request $request)
     {
-        dd($request['avaliadores']);
+        if ($request->wantsJson()) {
+            $response = [
+                'data' => $request->all(),
+                'message' => $request->get('avaliadores'),
+            ];
+            return response()->json($response, 200, [], JSON_NUMERIC_CHECK);
+        }
     }
 
     public function obterResultados(Request $request)
@@ -84,22 +84,30 @@ class HomeController extends Controller
         $labels = collect(array_pluck($data, 'heuristica'))->unique()->flatten();
 
         foreach ($collection as $key => $value) {
+            $c1 = mt_rand(1,255);
+            $c2 = mt_rand(1,255);
+            $c3 = mt_rand(1,255);
+
             $dataset = [
                 'label' => $key,
+                'fill' => true,
+                'lineTension' => 0.1,
+                'backgroundColor' => "rgba(".$c1.",".$c2.",".$c3.",0.1)",
+                'borderColor' => "rgba(".$c1.",".$c2.",".$c3.",1)",
+                'pointBackgroundColor' => "rgba(".$c1.",".$c2.",".$c3.",1)",
+                'pointBorderColor' => "#fff",
+                'pointHoverBackgroundColor' => "#fff",
+                'pointHoverBorderColor' => "rgba(".$c1.",".$c2.",".$c3.",1)",
                 'data' => array_pluck($value, 'peso')
             ];
             $datasets->push($dataset);
         }
 
-        $data = [
-            'labels' => $labels,
-            'pointStrokeColor' => "#fff",
-            'pointHighlightFill' => "#fff",
-            'datasets' => $datasets
-        ];
-
         $response = [
-            'data' => $data
+            'data' => [
+                'labels' => $labels,
+                'datasets' => $datasets
+            ]
         ];
 
         if ($request->wantsJson()) {
@@ -108,9 +116,8 @@ class HomeController extends Controller
     }
 
     public function sobre() {
-
         $heuristicas = Heuristica::all();
-        
         return view('heuristicas.index', compact('heuristicas'));
     }
+
 }

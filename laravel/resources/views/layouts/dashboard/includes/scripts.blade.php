@@ -1,16 +1,12 @@
-<script src="{{url('dashboard/main/js/bootstrap-notify.js')}}"></script>
+<script src="{{url('js/bootstrap-notify.js')}}"></script>
 <script src="{{url('js/dashboard.js')}}"></script>
 <script src="{{url('js/laravel.js')}}"></script>
 
 
 <script src="{{url('main/js/bootstrap.min.js')}}"></script>
 
-<!-- bootstrap progress js -->
-<script type="text/javascript" src="{{url('main/js/moment/moment.min.js')}}"></script>
 <!-- chart js -->
 <script src="{{url('main/js/chartjs/chart.min.js')}}"></script>
-<!-- sparkline -->
-<script src="{{url('main/js/sparkline/jquery.sparkline.min.js')}}"></script>
 
 <script src="{{url('main/js/custom.js')}}"></script>
 
@@ -25,6 +21,7 @@
 <script type="text/javascript" src="{{url('main/js/flot/jquery.flot.stack.js')}}"></script>
 <script type="text/javascript" src="{{url('main/js/flot/curvedLines.js')}}"></script>
 <script type="text/javascript" src="{{url('main/js/flot/jquery.flot.resize.js')}}"></script>
+
 
 <script type="text/javascript">
     $(document).ready(function(){

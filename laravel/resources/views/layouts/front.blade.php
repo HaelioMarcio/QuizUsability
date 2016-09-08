@@ -24,10 +24,10 @@
 <body id="app-layout">
     <nav role="navigation">
     <div class="nav-wrapper container">
-      <a id="logo-container" href="#" class="brand-logo">QuizAbility</a>
+	      <a id="logo-container" href="#" class="brand-logo"></a>
       <ul class="right hide-on-med-and-down">
         @if(Auth::guest())
-        <li><a href="/login">Acessar</a></li>
+        <li><a href="/login">Acesse</a></li>
         <li><a href="/register">Registre-se</a></li>
         @else
             <li><a href="{{url('/projetos')}}">Meus Projetos</a></li>

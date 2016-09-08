@@ -17,6 +17,10 @@
                 <ul class="nav side-menu">
                     <li><a href="{{ url('/home') }}"><i class="fa fa-dashboard"></i> Dashboard</a></li>
                     <li><a href="{{ url('/projetos') }}"><i class="fa fa-tasks"></i> Projetos</a></li>
+                    @if (Auth::user()->admin)
+                    <li><a href="{{ url('/categorias') }}"><i class="fa fa-server"></i> Categorias</a></li>
+                    <li><a href="{{ url('/perguntas') }}"><i class="fa fa-question-circle"></i> Perguntas</a></li>
+                    @endif
                     <li><a href="{{ url('/sobre') }}"><i class="fa fa-question"></i> Sobre</a></li>
                 </ul>
             </div>
