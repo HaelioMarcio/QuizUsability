@@ -43,5 +43,10 @@ class AppServiceProvider extends ServiceProvider
             'App\Repositories\AvaliacaoRepositoryEloquent'
         );
 
+        $this->app->bind(
+            'App\Repositories\CategoriaRepository',
+            'App\Repositories\CategoriaRepositoryEloquent'
+        );
+
     }
 }

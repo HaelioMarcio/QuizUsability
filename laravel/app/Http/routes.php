@@ -34,3 +34,5 @@ Route::get('/sobre', 'HomeController@sobre');
 Route::post('/send/quiz', 'HomeController@compartilharQuestionario');
 Route::get('/resultados', 'HomeController@obterResultados');
 Route::get('/mail', 'HomeController@mail');
+
+Route::resource('categorias', 'CategoriasController');
